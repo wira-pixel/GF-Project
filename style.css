@@ -1,0 +1,39 @@
+body {
+    background-color: #fce4ec;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+#container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ec407a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.flower {
+    font-size: 50px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+}

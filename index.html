@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Sidang Sayang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Halaman Login -->
+        <div id="login-box">
+            <h1>Halo Sayang!</h1>
+            <p>Masukkan kode keberuntunganmu:</p>
+            <input type="password" id="pin" placeholder="Masukkan PIN (123456)">
+            <button onclick="checkPin()">Buka Kejutan</button>
+            <p id="message"></p>
+        </div>
+
+        <!-- Halaman Utama -->
+        <div id="main-content" style="display: none;">
+            <h1>Selamat Sidang Skripsi!</h1>
+            <p>Kamu pasti bisa, aku bangga banget sama kamu!</p>
+            <div id="bouquet">
+                <div class="flower" onclick="showMessage('Semangat ya cantiku!')">🌸</div>
+                <div class="flower" onclick="showMessage('Sidang pasti lancar!')">🌷</div>
+                <div class="flower" onclick="showMessage('Kamu wanita hebat!')">🌻</div>
+            </div>
+            <p id="gift-message"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
