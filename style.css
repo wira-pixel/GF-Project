@@ -93,6 +93,12 @@ button:hover { background: #d81b60; }
 
 /* --- 4. ANIMASI & EFEK --- */
 
+/* Kelas untuk Mengunci Scroll di HP & Laptop saat Pop-up Aktif */
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 /* Fade-in saat Scroll */
 .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 1.5s ease, transform 1.5s ease; }
 .fade-section.show { opacity: 1; transform: translateY(0); }
