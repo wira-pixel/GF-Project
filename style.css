@@ -1,51 +1,29 @@
-/* --- GLOBAL STYLES --- */
+/* --- 1. RESET & GLOBAL --- */
 * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
 
-/* --- LOGIN PAGE STYLES --- */
-/* Kita gunakan class .login-body agar tidak bentrok dengan main.html */
-/* --- CSS Khusus Halaman Login --- */
+/* --- 2. HALAMAN LOGIN (Pink Gradient & Center) --- */
 .login-body {
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-.login-body .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* --- CSS Khusus Halaman Main --- */
-.main-body {
-    background-color: #0b050d;
-    color: #ffffff;
-    height: 100vh;
-    overflow-x: hidden;
-}
-
-.main-body .scroll-container {
     width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-}
-.login-body {
-    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
+.login-body .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 .card {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 30px;
     border-radius: 30px;
@@ -56,6 +34,7 @@
 }
 
 h1 { color: #880e4f; font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; }
+.login-body p { color: #4a1525; font-size: 0.95rem; }
 
 input {
     width: 100%; padding: 12px; margin: 15px 0 10px 0; border: none;
@@ -65,10 +44,12 @@ input {
 
 button {
     width: 100%; padding: 12px; background: #ec407a; color: white;
-    border: none; border-radius: 15px; font-weight: 600; cursor: pointer;
+    border: none; border-radius: 15px; font-weight: 600; cursor: pointer; transition: 0.3s;
 }
+button:hover { background: #d81b60; }
+.error-msg { color: #b71c1c; font-size: 13px; margin-top: 10px; }
 
-/* --- MAIN PAGE STYLES (Dark Theme) --- */
+/* --- 3. HALAMAN UTAMA (Main Theme & Dark) --- */
 .main-body {
     background-color: #0b050d;
     color: #ffffff;
@@ -77,7 +58,7 @@ button {
 
 .scroll-container {
     width: 100vw;
-    scroll-behavior: smooth; /* Mulus tanpa kaku */
+    scroll-behavior: smooth;
 }
 
 .section {
@@ -89,53 +70,77 @@ button {
     align-items: center;
     padding: 20px;
     position: relative;
+    text-align: center;
 }
 
-/* Glassmorphism hanya untuk bagian tertentu */
 .card-glass {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 90%;
     max-width: 360px;
+    position: relative;
+    z-index: 2;
 }
 
-/* Animasi & Efek */
-.gift-box { font-size: 75px; cursor: pointer; animation: floatGift 2s ease-in-out infinite; }
-@keyframes floatGift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.text-only-container { width: 90%; max-width: 360px; z-index: 2; }
 
-/* LOADING SCREEN (Sama untuk keduanya) */
+/* --- 4. ANIMASI & EFEK --- */
+
+/* Fade-in saat Scroll */
+.fade-section { opacity: 0; transform: translateY(30px); transition: opacity 1.5s ease, transform 1.5s ease; }
+.fade-section.show { opacity: 1; transform: translateY(0); }
+
+/* Scroll Hint */
+.scroll-hint {
+    font-size: 0.75rem; opacity: 0.5; margin-top: 20px; letter-spacing: 1px;
+    display: block; width: 100%; text-align: center; animation: bounceHint 2s infinite; z-index: 2;
+}
+@keyframes bounceHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+/* Gift Animation */
+.gift-box {
+    font-size: 75px; cursor: pointer; margin-top: 15px; display: inline-block;
+    animation: floatGift 2s ease-in-out infinite;
+}
+@keyframes floatGift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.05); } }
+
+/* Explosion Effect */
+#explosion-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 999;
+}
+.exploding-emoji {
+    position: fixed; font-size: 24px; animation: explode 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+@keyframes explode {
+    0% { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(1.4) rotate(var(--rot)); opacity: 0; }
+}
+
+/* Loading Screen */
 #loading-box {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(40, 10, 20, 0.8); backdrop-filter: blur(12px);
     display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
 }
-
-.spinner-flower { font-size: 45px; animation: spin 2s linear infinite; }
+.spinner-flower { font-size: 45px; animation: spin 2s linear infinite; margin-bottom: 12px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+.loading-text { color: #ffffff; font-weight: 400; font-size: 1rem; letter-spacing: 1px; }
 
-/* Falling Petals */
-.falling-petals { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; }
-.falling-petals span { position: absolute; top: -10%; animation: fall linear infinite; }
-@keyframes fall { 100% { transform: translateY(105vh) rotate(360deg); } }
-
-/* Pastikan kontainer ledakan menempati posisi kado secara absolut */
-#explosion-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    z-index: 10; /* Agar di atas segalanya */
+/* Falling Petals Background */
+.falling-petals {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 1; overflow: hidden;
 }
-
-.exploding-emoji {
-    position: fixed; /* Fixed agar bisa terbang menutupi seluruh layar */
-    font-size: 25px;
-    animation: explode 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-    pointer-events: none;
-}
-
+.falling-petals span { position: absolute; top: -10%; font-size: 18px; opacity: 0.7; animation: fall linear infinite; }
+.falling-petals span:nth-child(1) { left: 10%; animation-duration: 7s; }
+.falling-petals span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+.falling-petals span:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 1s; }
+.falling-petals span:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 3s; }
+@keyframes fall { 0% { transform: translateY(-5vh) rotate(0deg); } 100% { transform: translateY(105vh) rotate(360deg); } }
