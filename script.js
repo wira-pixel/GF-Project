@@ -1,6 +1,7 @@
 function checkPin() {
     const pin = document.getElementById('pin').value;
-    // Ganti '123456' dengan kode yang Anda inginkan
+    
+    // Ganti '123456' dengan PIN yang Anda inginkan
     if (pin === '123456') {
         document.getElementById('login-box').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
