@@ -47,5 +47,17 @@
             }
         });
     </script>
+    <!-- Di bagian bawah index.html, sebelum </body> -->
+    <script>
+        // Ini memastikan saat user di halaman login, sesi sebelumnya DIHAPUS
+        window.onload = function() {
+            sessionStorage.removeItem('isLoggedIn');
+        };
+
+        document.getElementById('btn-login').addEventListener('click', function() {
+            // ... (kode logika login Anda tetap sama) ...
+        });
+    </script>
+</body>
 </body>
 </html>
