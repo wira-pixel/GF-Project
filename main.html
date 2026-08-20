@@ -57,14 +57,19 @@
             <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
-        <!-- SLIDE 3: Section Pemicu (Saat di-scroll, popup amplop akan muncul otomatis) -->
+        <!-- SLIDE 3: Section Surat dengan Ikon Amplop Permanen di Bawahnya -->
         <section class="section fade-section" id="support-section" style="display: none;">
             <div class="text-only-container">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
                 <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #ffb6c1;">A Letter For You</h2>
                 <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; max-width: 320px; margin: 0 auto; text-align: center;">
-                    Silakan scroll ke bawah untuk melihat galeri kenangan... 📸
+                    Ada pesan khusus untukmu di bawah ini...<br>Tekan ikon suratnya ya! 👇✨
                 </p>
+                
+                <!-- Ikon Amplop Permanen (Bisa diklik berulang kali kapan pun) -->
+                <div onclick="openLetter()" style="cursor: pointer; font-size: 55px; display: inline-block; animation: bounce 2s infinite; margin-top: 15px;">
+                    💌
+                </div>
             </div>
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
@@ -116,7 +121,7 @@
         <img class="modal-content" id="img01">
     </div>
 
-    <!-- POPUP UNDANGAN SURAT (Seperti gambar yang Anda inginkan, muncul otomatis saat di-scroll) -->
+    <!-- POPUP KEJUTAN PERTAMA (Muncul otomatis saat di-scroll) -->
     <div id="envelope-invitation" class="envelope-popup-overlay" style="display: none;" onclick="closeEnvelopePopup()">
         <div class="envelope-popup-card" onclick="event.stopPropagation()">
             <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">From My Heart 💌</p>
@@ -124,7 +129,7 @@
             <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 15px;">
                 Ada pesan khusus untukmu di bawah ini...<br>Tekan ikon suratnya ya! 👇✨
             </p>
-            <!-- Ikon Amplop Interaktif -->
+            <!-- Ikon Amplop Interaktif di dalam Popup Kejutan -->
             <div onclick="openLetterFromPopup()" style="cursor: pointer; font-size: 55px; display: inline-block; animation: bounce 2s infinite; margin: 10px 0;">
                 💌
             </div>
@@ -221,7 +226,7 @@
             modal.style.display = "none";
         }
 
-        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL ---
+        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL) ---
         let hasShownEnvelopePopup = false;
 
         const envelopePopupObserver = new IntersectionObserver((entries) => {
@@ -230,7 +235,11 @@
                     const popup = document.getElementById('envelope-invitation');
                     popup.style.display = 'flex';
                     setTimeout(() => popup.classList.add('show'), 50);
-                    hasShownEnvelopePopup = true; // Hanya muncul sekali saat pertama kali di-scroll ke sana
+                    
+                    // Kunci agar background web tidak bisa di-scroll saat popup muncul
+                    document.body.style.overflow = 'hidden';
+                    
+                    hasShownEnvelopePopup = true; 
                 }
             });
         }, { threshold: 0.5 });
@@ -244,11 +253,15 @@
         function closeEnvelopePopup() {
             const popup = document.getElementById('envelope-invitation');
             popup.classList.remove('show');
-            setTimeout(() => popup.style.display = 'none', 300);
+            setTimeout(() => {
+                popup.style.display = 'none';
+                // Kembalikan fungsi scroll web setelah popup ditutup
+                document.body.style.overflow = 'auto';
+            }, 300);
         }
 
         function openLetterFromPopup() {
-            closeEnvelopePopup(); // Tutup popup undangan
+            closeEnvelopePopup(); // Tutup popup undangan & kembalikan scroll
             document.getElementById('letterPopup').style.display = 'flex'; // Buka isi surat utama
         }
 
