@@ -25,10 +25,7 @@
     <!-- Kontainer Ledakan Emoji -->
     <div id="explosion-container"></div>
 
-    <!-- Amplop Surat Mengambang (Muncul saat scroll mendekati bagian surat) -->
-    <div id="envelope" class="envelope-icon" onclick="openLetter()">💌</div>
-
-    <!-- Popup Surat Cinta -->
+    <!-- Popup Surat Cinta (Awalnya Tersembunyi, Muncul saat amplop diklik) -->
     <div id="letterPopup" class="letter-popup" onclick="closeLetter()">
         <div class="letter-content" onclick="event.stopPropagation()">
             <h2 style="color: #ffb6c1; margin-bottom: 12px; font-size: 1.4rem;">Untuk Kamu, Cintaku 🤍</h2>
@@ -60,14 +57,19 @@
             <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
-        <!-- SLIDE 3: Kalimat Suportif / Bagian Pemicu Amplop -->
+        <!-- SLIDE 3: Kalimat Suportif dengan Ikon Amplop di Bawahnya -->
         <section class="section fade-section" id="support-section" style="display: none;">
             <div class="text-only-container">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
                 <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #ffb6c1;">A Letter For You</h2>
                 <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; max-width: 320px; margin: 0 auto; text-align: center;">
-                    Ada pesan khusus untukmu di amplop melayang di samping layar... Tekan ikon suratnya ya! 👇✨
+                    Ada pesan khusus untukmu di bawah ini... Tekan ikon suratnya ya! 👇✨
                 </p>
+                
+                <!-- Ikon Amplop Interaktif (Muncul di bawah teks) -->
+                <div onclick="openLetter()" style="cursor: pointer; font-size: 50px; margin-top: 15px; display: inline-block; animation: bounce 2s infinite;">
+                    💌
+                </div>
             </div>
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
@@ -205,22 +207,6 @@
             const modal = document.getElementById("myModal");
             modal.style.display = "none";
         }
-
-        // Fungsi Memunculkan Amplop Surat Saat Scroll ke Section Surat
-        window.addEventListener('scroll', () => {
-            const supportSec = document.getElementById('support-section');
-            const env = document.getElementById('envelope');
-            
-            if (supportSec && supportSec.style.display !== 'none') {
-                const rect = supportSec.getBoundingClientRect();
-                // Jika bagian support-section berada di area layar
-                if (rect.top < window.innerHeight * 0.7 && rect.bottom > 100) {
-                    env.classList.add('show');
-                } else {
-                    env.classList.remove('show');
-                }
-            }
-        });
 
         // Fungsi Buka & Tutup Popup Surat
         function openLetter() {
