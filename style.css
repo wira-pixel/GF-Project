@@ -161,3 +161,133 @@ button:hover { background: #d81b60; }
     75% { content: '...'; }
     100% { content: ''; }
 }
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tema Gelap Romantis ala Video Referensi */
+body {
+    background-color: #0b050d;
+    color: #ffffff;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* Sistem Scroll Penuh (Snap Scrolling per Halaman) */
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    width: 100vw;
+}
+
+.section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    padding: 20px;
+    position: relative;
+}
+
+/* Card Kaca Transparan (Glassmorphism Gelap) */
+.card-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Kotak Kado & Animasi Getar/Melompat */
+.gift-box {
+    font-size: 75px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-block;
+    animation: floatGift 2s ease-in-out infinite;
+}
+
+@keyframes floatGift {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* Kontainer Ledakan Emoji */
+#explosion-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+.exploding-emoji {
+    position: absolute;
+    font-size: 22px;
+    animation: explode 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(0.4) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(1.3) rotate(var(--rot));
+        opacity: 0;
+    }
+}
+
+/* Animasi Kelopak Bunga Jatuh di Background */
+.falling-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.falling-petals span {
+    position: absolute;
+    top: -10%;
+    font-size: 18px;
+    opacity: 0.7;
+    animation: fall linear infinite;
+}
+
+.falling-petals span:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0s; }
+.falling-petals span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
+.falling-petals span:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 1s; }
+.falling-petals span:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 3s; }
+.falling-petals span:nth-child(5) { left: 85%; animation-duration: 10s; animation-delay: 1.5s; }
+.falling-petals span:nth-child(6) { left: 20%; animation-duration: 7.5s; animation-delay: 4s; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(-5vh) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+    }
+}
