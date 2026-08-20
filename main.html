@@ -226,7 +226,7 @@
             modal.style.display = "none";
         }
 
-        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL) ---
+        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL HP & LAPTOP) ---
         let hasShownEnvelopePopup = false;
 
         const envelopePopupObserver = new IntersectionObserver((entries) => {
@@ -236,8 +236,9 @@
                     popup.style.display = 'flex';
                     setTimeout(() => popup.classList.add('show'), 50);
                     
-                    // Kunci agar background web tidak bisa di-scroll saat popup muncul
+                    // Kunci scroll di body dan html (Laptop & HP)
                     document.body.style.overflow = 'hidden';
+                    document.documentElement.style.overflow = 'hidden';
                     
                     hasShownEnvelopePopup = true; 
                 }
@@ -257,6 +258,7 @@
                 popup.style.display = 'none';
                 // Kembalikan fungsi scroll web setelah popup ditutup
                 document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
             }, 300);
         }
 
