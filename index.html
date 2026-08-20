@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surprise for You</title>
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,32 +12,49 @@
         <!-- Halaman Login -->
         <div id="login-box" class="card">
             <h1>Halo Sayang! 🌷</h1>
-            <p>Inget Tanggal Jadian Ga?:</p>
+            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
             <input type="password" id="pin" placeholder="••••••">
-            <!-- Tombol menggunakan event listener di bawah, bukan onclick bawaan -->
             <button type="button" id="btn-login">Buka Kejutan</button>
             <p id="message" class="error-msg"></p>
         </div>
 
-        <!-- Halaman Utama -->
-        <div id="main-content" class="card" style="display: none;">
-            <h1>Selamat Sidang Skripsi! ✨</h1>
-            <p>Kamu wanita hebat, aku bangga banget sama kamu!</p>
-            <div id="bouquet">
-                <div class="flower" onclick="showMessage('Semangat ya cantiku!')">🌸</div>
-                <div class="flower" onclick="showMessage('Sidang pasti lancar!')">🌷</div>
-                <div class="flower" onclick="showMessage('Kamu wanita hebat!')">🌻</div>
-            </div>
-            <p id="gift-message" style="margin-top: 15px; font-weight: 600; color: #880e4f;"></p>
+        <!-- Halaman Utama (Awalnya tersembunyi) -->
+        <div id="main-content" style="display: none;">
+            
+            <!-- Slide 1: Kotak Kado Interaktif -->
+            <section class="slide card" id="gift-section">
+                <h2>Ada sesuatu buat kamu... 🎁</h2>
+                <p>Tap kotak kado di bawah untuk membukanya!</p>
+                <div class="gift-box" onclick="openGift()">
+                    🎁
+                </div>
+            </section>
+
+            <!-- Slide 2: Hasil Kado Terbuka (Ucapan & Supportif) -->
+            <section class="slide card" id="content-section" style="display: none;">
+                <h1 class="title-glow">SELAMAT SIDANG SKRIPSI! 🎉</h1>
+                <div class="support-text">
+                    <p>Terima kasih sudah berjuang sekuat tenaga sampai di titik ini. Aku tahu lelah, begadang, dan stresnya perjalanan skripsimu...</p>
+                    <p>Tapi lihat sekarang! Kamu berhasil melewati salah satu rintangan terbesar dalam hidupmu dengan hebat. Aku bangga banget sama kamu, cintaku! 🤍</p>
+                </div>
+                <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.7;">Scroll ke bawah untuk kejutan berikutnya... ↓</p>
+            </section>
+
+            <!-- Slide 3: Bagian Tambahan (Nanti bisa diisi lagi) -->
+            <section class="slide card" style="display: none;" id="next-section">
+                <h2>To Be Continued... ✨</h2>
+                <p>Bagian selanjutnya akan segera kita buat!</p>
+            </section>
+
         </div>
     </div>
 
-    <!-- Script langsung di dalam file untuk menghindari error file eksternal -->
+    <!-- Script -->
     <script>
         document.getElementById('btn-login').addEventListener('click', function() {
             const pinValue = document.getElementById('pin').value;
             
-            // Ganti '123456' dengan PIN yang Anda inginkan
+            // Ganti '123456' dengan PIN Anda
             if (pinValue === '123456') {
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
@@ -47,8 +63,21 @@
             }
         });
 
-        function showMessage(msg) {
-            document.getElementById('gift-message').innerText = msg;
+        // Fungsi saat kado diklik
+        function openGift() {
+            const giftSection = document.getElementById('gift-section');
+            const contentSection = document.getElementById('content-section');
+            const nextSection = document.getElementById('next-section');
+
+            // Efek transisi sederhana / seolah meledak
+            giftSection.style.transform = 'scale(0)';
+            giftSection.style.transition = 'transform 0.5s ease';
+
+            setTimeout(() => {
+                giftSection.style.display = 'none';
+                contentSection.style.display = 'flex';
+                nextSection.style.display = 'flex';
+            }, 400);
         }
     </script>
 </body>
