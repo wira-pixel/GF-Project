@@ -1,293 +1,92 @@
-* { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+/* --- GLOBAL STYLES --- */
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
+/* --- LOGIN PAGE STYLES --- */
+/* Kita gunakan class .login-body agar tidak bentrok dengan main.html */
+.login-body {
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-    margin: 0;
-    overflow: hidden;
-}
-
-.container {
-    width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .card {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 30px;
     border-radius: 30px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
     text-align: center;
     width: 90%;
-    max-width: 400px;
-    margin: auto;
+    max-width: 380px;
 }
 
-#login-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-h1 { color: #880e4f; font-weight: 600; font-size: 1.5rem; margin-bottom: 15px; }
-h2 { color: #880e4f; font-weight: 600; font-size: 1.3rem; margin-bottom: 10px; }
+h1 { color: #880e4f; font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; }
 
 input {
-    width: 100%;
-    padding: 12px;
-    margin: 15px 0;
-    border: none;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 18px;
-    background: rgba(255, 255, 255, 0.5);
-    outline: none;
+    width: 100%; padding: 12px; margin: 15px 0 10px 0; border: none;
+    border-radius: 15px; text-align: center; font-size: 18px;
+    background: rgba(255, 255, 255, 0.5); outline: none;
 }
 
 button {
-    width: 100%;
-    padding: 12px;
-    background: #ec407a;
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+    width: 100%; padding: 12px; background: #ec407a; color: white;
+    border: none; border-radius: 15px; font-weight: 600; cursor: pointer;
 }
 
-button:hover { background: #d81b60; }
-
-.error-msg { color: #b71c1c; font-size: 14px; margin-top: 10px; }
-
-/* Pengaturan Scroll Snapping untuk Slide */
-#main-content {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    width: 100%;
-}
-
-.slide {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    scroll-snap-align: start;
-    padding: 20px;
-}
-
-/* Kotak Kado Interaktif */
-.gift-box {
-    font-size: 80px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: transform 0.3s ease;
-    animation: bounce 2s infinite;
-}
-
-.gift-box:hover {
-    transform: scale(1.2);
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.support-text p {
-    color: #4a1525;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-/* Tampilan Halaman Loading Fullscreen Tanpa Kotak */
-#loading-box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(40, 10, 20, 0.6); /* Latar belakang gelap transparan */
-    backdrop-filter: blur(12px); /* Efek blur di belakangnya */
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-/* Ukuran Bunga Bulat di Tengah & Berputar */
-.spinner-flower {
-    font-size: 45px; /* Ukuran pas, tidak terlalu besar */
-    animation: spin 2s linear infinite;
-    margin-bottom: 12px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Teks Loading */
-.loading-text {
-    color: #ffffff; /* Warna teks putih agar kontras dan elegan */
-    font-weight: 400;
-    font-size: 1rem;
-    letter-spacing: 1px;
-}
-
-/* Animasi Titik-titik (3 dots) bergerak */
-.dots::after {
-    content: '';
-    animation: dots 1.5s steps(4, end) infinite;
-}
-
-@keyframes dots {
-    0% { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
-    100% { content: ''; }
-}
-
-* {
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* Tema Gelap Romantis ala Video Referensi */
-body {
+/* --- MAIN PAGE STYLES (Dark Theme) --- */
+.main-body {
     background-color: #0b050d;
     color: #ffffff;
     overflow-x: hidden;
-    height: 100vh;
 }
 
-/* Sistem Scroll Penuh (Snap Scrolling per Halaman) */
 .scroll-container {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
     width: 100vw;
+    scroll-behavior: smooth; /* Mulus tanpa kaku */
 }
 
 .section {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
     padding: 20px;
     position: relative;
 }
 
-/* Card Kaca Transparan (Glassmorphism Gelap) */
+/* Glassmorphism hanya untuk bagian tertentu */
 .card-glass {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 90%;
     max-width: 360px;
-    position: relative;
-    z-index: 2;
 }
 
-/* Kotak Kado & Animasi Getar/Melompat */
-.gift-box {
-    font-size: 75px;
-    cursor: pointer;
-    margin-top: 15px;
-    display: inline-block;
-    animation: floatGift 2s ease-in-out infinite;
+/* Animasi & Efek */
+.gift-box { font-size: 75px; cursor: pointer; animation: floatGift 2s ease-in-out infinite; }
+@keyframes floatGift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* LOADING SCREEN (Sama untuk keduanya) */
+#loading-box {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(40, 10, 20, 0.8); backdrop-filter: blur(12px);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
 }
 
-@keyframes floatGift {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.05); }
-}
+.spinner-flower { font-size: 45px; animation: spin 2s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Kontainer Ledakan Emoji */
-#explosion-container {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    width: 0;
-    height: 0;
-}
-
-.exploding-emoji {
-    position: absolute;
-    font-size: 22px;
-    animation: explode 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-    pointer-events: none;
-}
-
-@keyframes explode {
-    0% {
-        transform: translate(0, 0) scale(0.4) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) scale(1.3) rotate(var(--rot));
-        opacity: 0;
-    }
-}
-
-/* Animasi Kelopak Bunga Jatuh di Background */
-.falling-petals {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.falling-petals span {
-    position: absolute;
-    top: -10%;
-    font-size: 18px;
-    opacity: 0.7;
-    animation: fall linear infinite;
-}
-
-.falling-petals span:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0s; }
-.falling-petals span:nth-child(2) { left: 30%; animation-duration: 9s; animation-delay: 2s; }
-.falling-petals span:nth-child(3) { left: 50%; animation-duration: 6s; animation-delay: 1s; }
-.falling-petals span:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 3s; }
-.falling-petals span:nth-child(5) { left: 85%; animation-duration: 10s; animation-delay: 1.5s; }
-.falling-petals span:nth-child(6) { left: 20%; animation-duration: 7.5s; animation-delay: 4s; }
-
-@keyframes fall {
-    0% {
-        transform: translateY(-5vh) rotate(0deg);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0.2;
-    }
-}
+/* Falling Petals */
+.falling-petals { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; }
+.falling-petals span { position: absolute; top: -10%; animation: fall linear infinite; }
+@keyframes fall { 100% { transform: translateY(105vh) rotate(360deg); } }
