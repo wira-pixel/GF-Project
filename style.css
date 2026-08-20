@@ -237,7 +237,7 @@ button:hover { background: #d81b60; }
 
 .polaroid p {
     color: #333;
-    font-family: 'Handwriting', cursive; /* Kalau ada font tulisan tangan */
+    font-family: 'Handwriting', cursive; 
     margin-top: 15px;
     font-size: 0.9rem;
 }
@@ -263,19 +263,6 @@ button:hover { background: #d81b60; }
     cursor: zoom-out;
 }
 
-/* Amplop yang muncul saat scroll */
-.envelope-icon {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%) scale(0);
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.envelope-icon.show { transform: translateY(-50%) scale(1); }
-
 /* Popup Surat */
 .letter-popup {
     display: none;
@@ -284,18 +271,25 @@ button:hover { background: #d81b60; }
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.8);
     backdrop-filter: blur(8px);
-    z-index: 9999;
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 .letter-content {
-    background: #fff;
-    color: #333;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 85%;
-    max-height: 80%;
-    overflow-y: auto;
-    position: relative;
+    background: #ffffff;
+    color: #333333;
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 340px;
+    width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* Animasi Memantul untuk Ikon Amplop di Bawah Teks */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
