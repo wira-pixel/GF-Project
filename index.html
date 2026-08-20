@@ -9,12 +9,19 @@
 </head>
 <body>
     <div class="container">
+        <!-- Kotak Login -->
         <div id="login-box" class="card">
             <h1>Halo Sayang! 🌷</h1>
-            <p>Inget Tanggal Jadian Ga? </p>
+            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
             <input type="password" id="pin" placeholder="••••••">
             <button type="button" id="btn-login">Buka Kejutan</button>
             <p id="message" class="error-msg"></p>
+        </div>
+
+        <!-- Halaman Loading (Awalnya tersembunyi) -->
+        <div id="loading-box" class="card" style="display: none;">
+            <div class="spinner-flower">🌷</div>
+            <p class="loading-text">Sabar ya sayang<span class="dots"></span></p>
         </div>
     </div>
 
@@ -22,10 +29,16 @@
         document.getElementById('btn-login').addEventListener('click', function() {
             const pinValue = document.getElementById('pin').value;
             
-            // Ganti '123456' dengan PIN yang Anda inginkan
+            // Ganti '123456' dengan PIN Anda
             if (pinValue === '123456') {
-                // Berpindah ke file halaman berikutnya
-                window.location.href = 'main.html';
+                // Sembunyikan kotak login, tampilkan loading
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('loading-box').style.display = 'block';
+
+                // Tunggu 2.5 detik (2500ms) baru pindah ke main.html
+                setTimeout(function() {
+                    window.location.href = 'main.html';
+                }, 2500);
             } else {
                 document.getElementById('message').innerText = 'Yah, kodenya salah. Coba lagi sayang!';
             }
