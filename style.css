@@ -111,12 +111,28 @@ button:hover { background: #d81b60; }
     margin-bottom: 15px;
 }
 
-/* Animasi Bunga Berputar */
+/* Tampilan Halaman Loading Fullscreen Tanpa Kotak */
+#loading-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(40, 10, 20, 0.6); /* Latar belakang gelap transparan */
+    backdrop-filter: blur(12px); /* Efek blur di belakangnya */
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Ukuran Bunga Bulat di Tengah & Berputar */
 .spinner-flower {
-    font-size: 60px;
+    font-size: 45px; /* Ukuran pas, tidak terlalu besar */
     animation: spin 2s linear infinite;
-    margin-bottom: 15px;
-    display: inline-block;
+    margin-bottom: 12px;
 }
 
 @keyframes spin {
@@ -124,10 +140,12 @@ button:hover { background: #d81b60; }
     100% { transform: rotate(360deg); }
 }
 
+/* Teks Loading */
 .loading-text {
-    color: #880e4f;
-    font-weight: 600;
-    font-size: 1.1rem;
+    color: #ffffff; /* Warna teks putih agar kontras dan elegan */
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 /* Animasi Titik-titik (3 dots) bergerak */
