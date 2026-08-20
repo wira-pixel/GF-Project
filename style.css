@@ -124,7 +124,7 @@ button:hover { background: #d81b60; }
     100% { transform: translate(var(--x), var(--y)) scale(1.4) rotate(var(--rot)); opacity: 0; }
 }
 
-/* Loading Screen (Diperbarui agar teks jelas dan warna putih) */
+/* Loading Screen */
 #loading-box {
     position: fixed; 
     top: 0; 
@@ -167,30 +167,25 @@ button:hover { background: #d81b60; }
 
 /* --- RESPONSIVE MOBILE FIX --- */
 @media screen and (max-width: 600px) {
-    /* Mencegah zoom berlebih */
     html, body {
         overflow-x: hidden;
         width: 100%;
         position: relative;
     }
 
-    /* Ukuran kartu menyesuaikan lebar layar HP */
     .card, .card-glass {
         width: 95% !important;
         padding: 20px !important;
     }
 
-    /* Ukuran kado di HP */
     .gift-box {
         font-size: 60px !important;
     }
 
-    /* Judul lebih kecil di HP agar tidak patah */
     h1 {
         font-size: 1.2rem !important;
     }
 
-    /* Pastikan section memenuhi layar HP tanpa padding berlebih */
     .section {
         padding: 10px !important;
     }
@@ -223,10 +218,10 @@ button:hover { background: #d81b60; }
     padding: 15px 15px 40px 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     width: 280px;
-    transform: rotate(-2deg); /* Miring sedikit agar tidak monoton */
+    transform: rotate(-2deg);
 }
 
-.polaroid:nth-child(2) { transform: rotate(2deg); } /* Miring arah sebaliknya */
+.polaroid:nth-child(2) { transform: rotate(2deg); }
 .polaroid:nth-child(3) { transform: rotate(-1deg); }
 
 .polaroid img {
@@ -263,7 +258,7 @@ button:hover { background: #d81b60; }
     cursor: zoom-out;
 }
 
-/* Popup Surat */
+/* Popup Surat (Isi Surat Utama) */
 .letter-popup {
     display: none;
     position: fixed;
@@ -288,7 +283,46 @@ button:hover { background: #d81b60; }
     text-align: center;
 }
 
-/* Animasi Memantul untuk Ikon Amplop di Bawah Teks */
+/* Popup Undangan Surat (Yang muncul otomatis saat di-scroll) */
+.envelope-popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.envelope-popup-overlay.show {
+    opacity: 1;
+}
+
+.envelope-popup-card {
+    background: rgba(40, 10, 20, 0.95);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+    max-width: 320px;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.envelope-popup-overlay.show .envelope-popup-card {
+    transform: scale(1);
+}
+
+/* Animasi Memantul untuk Ikon Amplop */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
