@@ -20,9 +20,10 @@
         <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span>
     </div>
 
+    <!-- Kontainer Scroll Mengalir Bebas -->
     <div class="scroll-container">
         
-        <!-- SLIDE 1: Kotak Kado & Efek Ledakan Emoji -->
+        <!-- BAGIAN 1: Kotak Kado & Efek Ledakan Emoji -->
         <section class="section" id="gift-section">
             <div class="card-glass">
                 <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
@@ -31,22 +32,23 @@
             </div>
         </section>
 
-        <!-- SLIDE 2: Ucapan Selamat Sidang -->
-        <section class="section" id="content-section" style="display: none;">
+        <!-- BAGIAN 2: Ucapan Selamat Sidang (Hanya ini yang pakai Kotak Card) -->
+        <section class="section hidden-section" id="content-section">
             <div class="card-glass">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">Your Special Day 🤍</p>
                 <h1 style="font-size: 1.8rem; margin: 10px 0; color: #ffb6c1;">HAPPY SIDANG SKRIPSI</h1>
                 <p style="font-size: 0.9rem; font-style: italic; opacity: 0.9;">"Wishing you happiness, good health, and all your dreams come true." ✨</p>
             </div>
+            <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
-        <!-- SLIDE 3: Kalimat Suportif -->
-        <section class="section" style="display: none;" id="support-section">
-            <div class="card-glass">
-                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">From My Heart 💌</p>
-                <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Letter For You</h2>
-                <p style="font-size: 0.85rem; line-height: 1.6; text-align: left; opacity: 0.9;">
-                    Terima kasih ya sudah bertahan sampai sejauh ini. Aku tahu proses menuju sidang ini tidak mudah, penuh air mata, lelah, dan rasa ingin menyerah. Tapi kamu membuktikan bahwa kamu wanita hebat yang bisa melaluinya. I'm so proud of you! 🤍
+        <!-- BAGIAN 3: Kalimat Suportif (Tanpa Box / Teks Langsung di Layar) -->
+        <section class="section hidden-section" id="support-section">
+            <div class="text-only-container">
+                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
+                <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #ffb6c1;">A Letter For You</h2>
+                <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; max-width: 320px;">
+                    Terima kasih ya sudah bertahan sampai sejauh ini. Aku tahu proses menuju sidang ini tidak mudah, penuh air mata, lelah, dan rasa ingin menyerah. Tapi kamu membuktikan bahwa kamu wanita hebat yang bisa melaluinya. Aku bangga banget sama kamu, cintaku! 🤍
                 </p>
             </div>
         </section>
@@ -76,18 +78,28 @@
                 container.appendChild(span);
             }
 
-            // Transisi membuka slide berikutnya
+            // Transisi membuka slide berikutnya secara mulus
             setTimeout(() => {
                 document.getElementById('gift-section').style.opacity = '0';
                 document.getElementById('gift-section').style.transform = 'scale(0.8)';
                 document.getElementById('gift-section').style.transition = 'all 0.5s ease';
-            }, 500);
+            }, 400);
 
             setTimeout(() => {
                 document.getElementById('gift-section').style.display = 'none';
-                document.getElementById('content-section').style.display = 'flex';
-                document.getElementById('support-section').style.display = 'flex';
-            }, 900);
+                
+                // Munculkan bagian selanjutnya dengan efek pelan-pelan (fade-in)
+                const contentSec = document.getElementById('content-section');
+                const supportSec = document.getElementById('support-section');
+                
+                contentSec.style.display = 'flex';
+                supportSec.style.display = 'flex';
+                
+                setTimeout(() => {
+                    contentSec.classList.add('show');
+                    supportSec.classList.add('show');
+                }, 50);
+            }, 800);
         }
     </script>
 </body>
