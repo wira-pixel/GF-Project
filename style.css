@@ -71,6 +71,7 @@ button:hover { background: #d81b60; }
     padding: 20px;
     position: relative;
     text-align: center;
+    z-index: 5 !important;
 }
 
 .card-glass {
@@ -85,7 +86,7 @@ button:hover { background: #d81b60; }
     width: 90%;
     max-width: 360px;
     position: relative;
-    z-index: 2;
+    z-index: 10 !important;
 }
 
 .text-only-container { width: 90%; max-width: 360px; z-index: 2; }
