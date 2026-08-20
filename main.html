@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Skrip Pengaman Sesi -->
+    <script>
+        // Jika belum login, tendang kembali ke index.html
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'index.html';
+        }
+    </script>
+    
     <div class="container">
         <div id="main-content">
             
