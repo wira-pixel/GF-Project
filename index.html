@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surprise for You</title>
-    <!-- Tambahkan Google Font -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,13 +13,14 @@
         <!-- Halaman Login -->
         <div id="login-box" class="card">
             <h1>Halo Sayang! 🌷</h1>
-            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
+            <p>Inget Tanggal Jadian Ga?:</p>
             <input type="password" id="pin" placeholder="••••••">
-            <button onclick="checkPin()">Buka Kejutan</button>
+            <!-- Tombol menggunakan event listener di bawah, bukan onclick bawaan -->
+            <button type="button" id="btn-login">Buka Kejutan</button>
             <p id="message" class="error-msg"></p>
         </div>
 
-        <!-- Halaman Utama (Awalnya tersembunyi) --
+        <!-- Halaman Utama -->
         <div id="main-content" class="card" style="display: none;">
             <h1>Selamat Sidang Skripsi! ✨</h1>
             <p>Kamu wanita hebat, aku bangga banget sama kamu!</p>
@@ -28,9 +29,27 @@
                 <div class="flower" onclick="showMessage('Sidang pasti lancar!')">🌷</div>
                 <div class="flower" onclick="showMessage('Kamu wanita hebat!')">🌻</div>
             </div>
-            <p id="gift-message"></p>
+            <p id="gift-message" style="margin-top: 15px; font-weight: 600; color: #880e4f;"></p>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Script langsung di dalam file untuk menghindari error file eksternal -->
+    <script>
+        document.getElementById('btn-login').addEventListener('click', function() {
+            const pinValue = document.getElementById('pin').value;
+            
+            // Ganti '123456' dengan PIN yang Anda inginkan
+            if (pinValue === '123456') {
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                document.getElementById('message').innerText = 'Yah, kodenya salah. Coba lagi sayang!';
+            }
+        });
+
+        function showMessage(msg) {
+            document.getElementById('gift-message').innerText = msg;
+        }
+    </script>
 </body>
 </html>
