@@ -123,15 +123,34 @@ button:hover { background: #d81b60; }
     100% { transform: translate(var(--x), var(--y)) scale(1.4) rotate(var(--rot)); opacity: 0; }
 }
 
-/* Loading Screen */
+/* Loading Screen (Diperbarui agar teks jelas dan warna putih) */
 #loading-box {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(40, 10, 20, 0.8); backdrop-filter: blur(12px);
-    display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(40, 10, 20, 0.85); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999;
 }
-.spinner-flower { font-size: 45px; animation: spin 2s linear infinite; margin-bottom: 12px; }
+.spinner-flower { 
+    font-size: 45px; 
+    animation: spin 2s linear infinite; 
+    margin-bottom: 12px; 
+}
 @keyframes spin { 100% { transform: rotate(360deg); } }
-.loading-text { color: #ffffff; font-weight: 400; font-size: 1rem; letter-spacing: 1px; }
+.loading-text { 
+    color: #ffffff !important; 
+    font-weight: 400; 
+    font-size: 1rem; 
+    letter-spacing: 1px; 
+}
 
 /* Falling Petals Background */
 .falling-petals {
