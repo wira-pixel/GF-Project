@@ -3,6 +3,37 @@
 
 /* --- LOGIN PAGE STYLES --- */
 /* Kita gunakan class .login-body agar tidak bentrok dengan main.html */
+/* --- CSS Khusus Halaman Login --- */
+.login-body {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.login-body .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* --- CSS Khusus Halaman Main --- */
+.main-body {
+    background-color: #0b050d;
+    color: #ffffff;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.main-body .scroll-container {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
 .login-body {
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
     height: 100vh;
@@ -90,3 +121,21 @@ button {
 .falling-petals { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; }
 .falling-petals span { position: absolute; top: -10%; animation: fall linear infinite; }
 @keyframes fall { 100% { transform: translateY(105vh) rotate(360deg); } }
+
+/* Pastikan kontainer ledakan menempati posisi kado secara absolut */
+#explosion-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 10; /* Agar di atas segalanya */
+}
+
+.exploding-emoji {
+    position: fixed; /* Fixed agar bisa terbang menutupi seluruh layar */
+    font-size: 25px;
+    animation: explode 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    pointer-events: none;
+}
+
