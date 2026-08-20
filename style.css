@@ -195,3 +195,49 @@ button:hover { background: #d81b60; }
         padding: 10px !important;
     }
 }
+
+/* Efek Gradasi Muncul (Fade-in & Slide-up) */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Container Galeri Polaroid */
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    width: 100%;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    width: 280px;
+    transform: rotate(-2deg); /* Miring sedikit agar tidak monoton */
+}
+
+.polaroid:nth-child(2) { transform: rotate(2deg); } /* Miring arah sebaliknya */
+.polaroid:nth-child(3) { transform: rotate(-1deg); }
+
+.polaroid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.polaroid p {
+    color: #333;
+    font-family: 'Handwriting', cursive; /* Kalau ada font tulisan tangan */
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
