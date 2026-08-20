@@ -55,21 +55,28 @@
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
 
-        <!-- SLIDE 4: Galeri Foto Kenangan -->
-        <section class="section fade-section" id="gallery-section" style="display: none;">
-            <div class="card-glass" style="max-width: 340px;">
-                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">Sweet Memories 📸</p>
-                <h2 style="font-size: 1.3rem; margin-bottom: 15px; color: #ffb6c1;">Perjuangan yang Terbayar</h2>
-                
-                <!-- Tempat Foto (Ganti 'path-foto.jpg' dengan link/file foto kalian) -->
-                <div style="width: 100%; height: 200px; border-radius: 15px; overflow: hidden; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.2);">
-                    <img src="foto-kamu.jpg" alt="Foto Kenangan" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; document.getElementById('fallback-text').style.display='block';">
-                    <span id="fallback-text" style="font-size: 0.85rem; opacity: 0.6; display: none;">(Taruh foto kalian di sini 📷)</span>
-                </div>
-                <p style="font-size: 0.85rem; opacity: 0.9; font-style: italic;">"Setiap lelahmu berbuah manis hari ini."</p>
-            </div>
-            <p class="scroll-hint">Satu hal lagi... ↓</p>
-        </section>
+       <!-- SLIDE 4: Galeri Foto Polaroid -->
+<section class="section fade-in-element" id="gallery-section" style="display: none;">
+    <h2 style="color: #ffb6c1; margin-bottom: 30px;">Our Memories</h2>
+    
+    <div class="gallery-container">
+        <!-- Foto 1 -->
+        <div class="polaroid">
+            <img src="foto1.jpg" alt="Foto 1">
+            <p>Our very first sunset together</p>
+        </div>
+        <!-- Foto 2 -->
+        <div class="polaroid">
+            <img src="foto2.jpg" alt="Foto 2">
+            <p>Our favourite cafe</p>
+        </div>
+        <!-- Foto 3 -->
+        <div class="polaroid">
+            <img src="foto3.jpg" alt="Foto 3">
+            <p>First time at the beach</p>
+        </div>
+    </div>
+</section>
 
         <!-- SLIDE 5: Alasan Aku Bangga & Tombol Interaktif -->
         <section class="section fade-section" id="interactive-section" style="display: none;">
@@ -144,6 +151,18 @@
         function celebrateChoice(text) {
             document.getElementById('choice-result').innerText = `Asyik! Siap-siap ditraktir ya, pilihan kamu: ${text} 🥰`;
         }
+        // --- TAMBAHKAN DI SINI ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-element').forEach(el => {
+        observer.observe(el);
+    });
     </script>
 </body>
 </html>
