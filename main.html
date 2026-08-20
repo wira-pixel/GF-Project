@@ -3,23 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise for You</title>
+    <title>Selamat Sidang Sayang!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Halaman Login -->
-        <div id="login-box" class="card">
-            <h1>Halo Sayang! 🌷</h1>
-            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
-            <input type="password" id="pin" placeholder="••••••">
-            <button type="button" id="btn-login">Buka Kejutan</button>
-            <p id="message" class="error-msg"></p>
-        </div>
-
-        <!-- Halaman Utama (Awalnya tersembunyi) -->
-        <div id="main-content" style="display: none;">
+        <div id="main-content">
             
             <!-- Slide 1: Kotak Kado Interaktif -->
             <section class="slide card" id="gift-section">
@@ -32,7 +22,7 @@
 
             <!-- Slide 2: Hasil Kado Terbuka (Ucapan & Supportif) -->
             <section class="slide card" id="content-section" style="display: none;">
-                <h1 class="title-glow">SELAMAT SIDANG SKRIPSI! 🎉</h1>
+                <h1>SELAMAT SIDANG SKRIPSI! 🎉</h1>
                 <div class="support-text">
                     <p>Terima kasih sudah berjuang sekuat tenaga sampai di titik ini. Aku tahu lelah, begadang, dan stresnya perjalanan skripsimu...</p>
                     <p>Tapi lihat sekarang! Kamu berhasil melewati salah satu rintangan terbesar dalam hidupmu dengan hebat. Aku bangga banget sama kamu, cintaku! 🤍</p>
@@ -40,7 +30,7 @@
                 <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.7;">Scroll ke bawah untuk kejutan berikutnya... ↓</p>
             </section>
 
-            <!-- Slide 3: Bagian Tambahan (Nanti bisa diisi lagi) -->
+            <!-- Slide 3: Bagian Tambahan (Nanti diisi lagi) -->
             <section class="slide card" style="display: none;" id="next-section">
                 <h2>To Be Continued... ✨</h2>
                 <p>Bagian selanjutnya akan segera kita buat!</p>
@@ -49,27 +39,12 @@
         </div>
     </div>
 
-    <!-- Script -->
     <script>
-        document.getElementById('btn-login').addEventListener('click', function() {
-            const pinValue = document.getElementById('pin').value;
-            
-            // Ganti '123456' dengan PIN Anda
-            if (pinValue === '123456') {
-                document.getElementById('login-box').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            } else {
-                document.getElementById('message').innerText = 'Yah, kodenya salah. Coba lagi sayang!';
-            }
-        });
-
-        // Fungsi saat kado diklik
         function openGift() {
             const giftSection = document.getElementById('gift-section');
             const contentSection = document.getElementById('content-section');
             const nextSection = document.getElementById('next-section');
 
-            // Efek transisi sederhana / seolah meledak
             giftSection.style.transform = 'scale(0)';
             giftSection.style.transition = 'transform 0.5s ease';
 
