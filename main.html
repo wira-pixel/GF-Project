@@ -14,6 +14,10 @@
 </head>
 <body class="main-body">
 
+    <!-- Audio Player (Latar Belakang Lagu) -->
+    <!-- Ganti 'lagu.mp3' dengan nama file musik yang Anda taruh di folder project -->
+    <audio id="bg-music" src="lagu.mp3" preload="auto" loop></audio>
+
     <!-- Efek Kelopak Bunga Berjatuhan di Background -->
     <div class="falling-petals">
         <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span><span>💖</span><span>🌸</span>
@@ -55,28 +59,25 @@
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
 
-       <!-- SLIDE 4: Galeri Foto Polaroid -->
-<section class="section fade-in-element" id="gallery-section" style="display: none;">
-    <h2 style="color: #ffb6c1; margin-bottom: 30px;">Our Memories</h2>
-    
-    <div class="gallery-container">
-        <!-- Foto 1 -->
-        <div class="polaroid">
-            <img src="foto1.jpeg" alt="Foto 1">
-            <p>Our very first sunset together</p>
-        </div>
-        <!-- Foto 2 -->
-        <div class="polaroid">
-            <img src="foto2.jpeg" alt="Foto 2">
-            <p>Our favourite cafe</p>
-        </div>
-        <!-- Foto 3 -->
-        <div class="polaroid">
-            <img src="foto3.jpeg" alt="Foto 3">
-            <p>First time at the beach</p>
-        </div>
-    </div>
-</section>
+        <!-- SLIDE 4: Galeri Foto Polaroid -->
+        <section class="section fade-in-element" id="gallery-section" style="display: none;">
+            <h2 style="color: #ffb6c1; margin-bottom: 30px;">Our Memories</h2>
+            
+            <div class="gallery-container">
+                <div class="polaroid" onclick="openModal('foto1.jpeg')">
+                    <img src="foto1.jpeg" alt="Foto 1">
+                    <p>Our very first sunset together</p>
+                </div>
+                <div class="polaroid" onclick="openModal('foto2.jpeg')">
+                    <img src="foto2.jpeg" alt="Foto 2">
+                    <p>Our favourite cafe</p>
+                </div>
+                <div class="polaroid" onclick="openModal('foto3.jpeg')">
+                    <img src="foto3.jpeg" alt="Foto 3">
+                    <p>First time at the beach</p>
+                </div>
+            </div>
+        </section>
 
         <!-- SLIDE 5: Alasan Aku Bangga & Tombol Interaktif -->
         <section class="section fade-section" id="interactive-section" style="display: none;">
@@ -100,8 +101,22 @@
 
     </div>
 
+    <!-- Modal Popup untuk Zoom Foto -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <img class="modal-content" id="img01">
+    </div>
+
     <script>
         function openGift() {
+            // 1. Putar Musik saat Kado Ditekan
+            const music = document.getElementById('bg-music');
+            if (music) {
+                music.play().catch(error => {
+                    console.log("Audio play blocked/error: ", error);
+                });
+            }
+
+            // 2. Efek Ledakan Emoji
             const container = document.getElementById('explosion-container');
             const emojis = ['🌸', '🌷', '🌻', '✨', '🤍', '💖', '💐'];
             const totalEmojis = 35; 
@@ -151,18 +166,32 @@
         function celebrateChoice(text) {
             document.getElementById('choice-result').innerText = `Asyik! Siap-siap ditraktir ya, pilihan kamu: ${text} 🥰`;
         }
-        // --- TAMBAHKAN DI SINI ---
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in-element').forEach(el => {
-        observer.observe(el);
-    });
+        // Observer untuk animasi gradasi (fade-in) saat scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Fungsi Modal Popup Foto
+        function openModal(imgSrc) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
     </script>
 </body>
 </html>
