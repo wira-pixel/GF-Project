@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-body">
     <div class="container">
         <!-- Kotak Login -->
         <div id="login-box" class="card">
@@ -26,18 +26,19 @@
     </div>
 
     <script>
+        // Hapus sesi saat halaman login dimuat/di-refresh agar kembali ke awal
+        sessionStorage.removeItem('isLoggedIn');
+
         document.getElementById('btn-login').addEventListener('click', function() {
             const pinValue = document.getElementById('pin').value;
             
             // Ganti '123456' dengan PIN Anda
             if (pinValue === '123456') {
-                // Tandai bahwa user sudah login dengan benar di sesi ini
                 sessionStorage.setItem('isLoggedIn', 'true');
 
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('loading-box').style.display = 'flex';
 
-                // Jeda 2.5 detik untuk animasi loading yang estetik
                 setTimeout(function() {
                     window.location.href = 'main.html';
                 }, 2500);
