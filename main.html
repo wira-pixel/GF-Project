@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="main-body">
     <!-- Skrip Pengaman Sesi -->
     <script>
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
@@ -23,14 +23,16 @@
     <!-- Kontainer Scroll Mengalir Bebas -->
     <div class="scroll-container">
         
-        <!-- BAGIAN 1: Kotak Kado & Efek Ledakan Emoji -->
-        <section class="section" id="gift-section">
-            <div class="card-glass">
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
-                <div id="explosion-container"></div>
-                <div class="gift-box" onclick="openGift()">🎁</div>
-            </div>
-        </section>
+       <!-- SLIDE 1: Pindahkan container keluar dari card-glass -->
+<section class="section" id="gift-section">
+    <!-- Kontainer ledakan ditaruh di sini agar bebas bergerak di layar -->
+    <div id="explosion-container"></div>
+    
+    <div class="card-glass">
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
+        <div class="gift-box" onclick="openGift()">🎁</div>
+    </div>
+</section>
 
         <<!-- BAGIAN 2: Ucapan Selamat Sidang -->
         <section class="section hidden-section" id="content-section">
