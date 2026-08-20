@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Surprise for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-box" class="card">
+            <h1>Halo Sayang! 🌷</h1>
+            <p>Inget Tanggal Jadian Ga? </p>
+            <input type="password" id="pin" placeholder="••••••">
+            <button type="button" id="btn-login">Buka Kejutan</button>
+            <p id="message" class="error-msg"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btn-login').addEventListener('click', function() {
+            const pinValue = document.getElementById('pin').value;
+            
+            // Ganti '123456' dengan PIN yang Anda inginkan
+            if (pinValue === '123456') {
+                // Berpindah ke file halaman berikutnya
+                window.location.href = 'main.html';
+            } else {
+                document.getElementById('message').innerText = 'Yah, kodenya salah. Coba lagi sayang!';
+            }
+        });
+    </script>
+</body>
+</html>
