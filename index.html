@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semangat Sidang Sayang</title>
+    <title>Surprise for You</title>
+    <!-- Tambahkan Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
+    <div class="container">
         <!-- Halaman Login -->
-        <div id="login-box">
-            <h1>Halo Sayang!</h1>
-            <p>Masukkan kode keberuntunganmu:</p>
-            <input type="password" id="pin" placeholder="Masukkan PIN (123456)">
+        <div id="login-box" class="card">
+            <h1>Halo Sayang! 🌷</h1>
+            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
+            <input type="password" id="pin" placeholder="••••••">
             <button onclick="checkPin()">Buka Kejutan</button>
-            <p id="message"></p>
+            <p id="message" class="error-msg"></p>
         </div>
 
-        <!-- Halaman Utama -->
-        <div id="main-content" style="display: none;">
-            <h1>Selamat Sidang Skripsi!</h1>
-            <p>Kamu pasti bisa, aku bangga banget sama kamu!</p>
+        <!-- Halaman Utama (Awalnya tersembunyi) -->
+        <div id="main-content" class="card" style="display: none;">
+            <h1>Selamat Sidang Skripsi! ✨</h1>
+            <p>Kamu wanita hebat, aku bangga banget sama kamu!</p>
             <div id="bouquet">
                 <div class="flower" onclick="showMessage('Semangat ya cantiku!')">🌸</div>
                 <div class="flower" onclick="showMessage('Sidang pasti lancar!')">🌷</div>
