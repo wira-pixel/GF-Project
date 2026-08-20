@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Surprise for You, Sayang</title>
-    <!-- SKRIP PROTEKSI: Ditaruh paling atas agar langsung tereksekusi sebelum page render -->
+    <!-- SKRIP PROTEKSI SESI -->
     <script>
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
             window.location.href = 'index.html';
@@ -13,25 +13,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="main-body">
-    <!-- Skrip Pengaman Sesi -->
-    <script>
-        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'index.html';
-        }
-    </script>
 
-    <!-- Efek Kelopak Bunga Berjatuhan di Background (Dikembalikan & Aktif) -->
+    <!-- Efek Kelopak Bunga Berjatuhan di Background -->
     <div class="falling-petals">
         <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span><span>💖</span><span>🌸</span>
     </div>
 
-    <!-- Kontainer Ledakan Emoji (Dikeluarkan agar bebas meledak ke seluruh layar) -->
+    <!-- Kontainer Ledakan Emoji -->
     <div id="explosion-container"></div>
 
     <!-- Kontainer Scroll Mengalir Bebas -->
     <div class="scroll-container">
         
-        <!-- SLIDE 1: Kotak Kado -->
+        <!-- SLIDE 1: Kotak Kado (Tampil Pertama) -->
         <section class="section" id="gift-section">
             <div class="card-glass">
                 <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
@@ -39,8 +33,8 @@
             </div>
         </section>
 
-        <!-- BAGIAN 2: Ucapan Selamat Sidang -->
-        <section class="section fade-section" id="content-section">
+        <!-- SLIDE 2: Ucapan Selamat Sidang (Awalnya Disembunyikan) -->
+        <section class="section fade-section" id="content-section" style="display: none;">
             <div class="card-glass">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">Your Special Day 🤍</p>
                 <h1 style="font-size: 1.8rem; margin: 10px 0; color: #ffb6c1;">HAPPY SIDANG SKRIPSI</h1>
@@ -49,12 +43,12 @@
             <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
-        <!-- BAGIAN 3: Kalimat Suportif (Tanpa Box / Teks Langsung di Layar) -->
-        <section class="section fade-section" id="support-section">
+        <!-- SLIDE 3: Kalimat Suportif (Awalnya Disembunyikan) -->
+        <section class="section fade-section" id="support-section" style="display: none;">
             <div class="text-only-container">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
                 <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #ffb6c1;">A Letter For You</h2>
-                <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; max-width: 320px;">
+                <p style="font-size: 0.95rem; line-height: 1.8; opacity: 0.95; max-width: 320px; margin: 0 auto; text-align: center;">
                     Terima kasih ya sudah bertahan sampai sejauh ini. Aku tahu proses menuju sidang ini tidak mudah, penuh air mata, lelah, dan rasa ingin menyerah. Tapi kamu membuktikan bahwa kamu wanita hebat yang bisa melaluinya. Aku bangga banget sama kamu, cintaku! 🤍
                 </p>
             </div>
@@ -68,13 +62,12 @@
             const emojis = ['🌸', '🌷', '🌻', '✨', '🤍', '💖', '💐'];
             const totalEmojis = 35; 
 
-            // Efek ledakan emoji bunga yang menyebar ke seluruh layar
+            // Efek ledakan emoji bunga
             for (let i = 0; i < totalEmojis; i++) {
                 const span = document.createElement('span');
                 span.classList.add('exploding-emoji');
                 span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 
-                // Mengatur titik awal dari tengah layar (tempat kado berada)
                 span.style.left = '50vw';
                 span.style.top = '50vh';
 
@@ -100,24 +93,20 @@
             setTimeout(() => {
                 document.getElementById('gift-section').style.display = 'none';
                 
-                // Memicu animasi muncul pelan-pelan (fade-in) pada bagian ucapan
-                document.getElementById('content-section').classList.add('show');
+                // Munculkan Slide 2 dan Slide 3 dengan display flex
+                const contentSec = document.getElementById('content-section');
+                const supportSec = document.getElementById('support-section');
+                
+                contentSec.style.display = 'flex';
+                supportSec.style.display = 'flex';
+
+                // Beri jeda sedikit agar transisi fade-in (muncul pelan-pelan) terlihat halus
+                setTimeout(() => {
+                    contentSec.classList.add('show');
+                    supportSec.classList.add('show');
+                }, 50);
             }, 900);
         }
-
-        // Efek Fade-in otomatis saat elemen di-scroll ke layar
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        // Daftarkan semua section agar mendeteksi scroll
-        document.querySelectorAll('.fade-section').forEach(section => {
-            observer.observe(section);
-        });
     </script>
 </body>
 </html>
