@@ -3,64 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Sidang Sayang!</title>
+    <title>Surprise for You, Sayang</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Skrip Pengaman Sesi -->
     <script>
-        // Jika belum login, tendang kembali ke index.html
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
             window.location.href = 'index.html';
         }
     </script>
-    
-    <div class="container">
-        <div id="main-content">
-            
-            <!-- Slide 1: Kotak Kado Interaktif -->
-            <section class="slide card" id="gift-section">
-                <h2>Ada sesuatu buat kamu... 🎁</h2>
-                <p>Tap kotak kado di bawah untuk membukanya!</p>
-                <div class="gift-box" onclick="openGift()">
-                    🎁
-                </div>
-            </section>
 
-            <!-- Slide 2: Hasil Kado Terbuka (Ucapan & Supportif) -->
-            <section class="slide card" id="content-section" style="display: none;">
-                <h1>SELAMAT SIDANG SKRIPSI! 🎉</h1>
-                <div class="support-text">
-                    <p>Terima kasih sudah berjuang sekuat tenaga sampai di titik ini. Aku tahu lelah, begadang, dan stresnya perjalanan skripsimu...</p>
-                    <p>Tapi lihat sekarang! Kamu berhasil melewati salah satu rintangan terbesar dalam hidupmu dengan hebat. Aku bangga banget sama kamu, cintaku! 🤍</p>
-                </div>
-                <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.7;">Scroll ke bawah untuk kejutan berikutnya... ↓</p>
-            </section>
+    <!-- Efek Kelopak Bunga Berjatuhan di Background -->
+    <div class="falling-petals">
+        <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span>
+    </div>
 
-            <!-- Slide 3: Bagian Tambahan (Nanti diisi lagi) -->
-            <section class="slide card" style="display: none;" id="next-section">
-                <h2>To Be Continued... ✨</h2>
-                <p>Bagian selanjutnya akan segera kita buat!</p>
-            </section>
+    <div class="scroll-container">
+        
+        <!-- SLIDE 1: Kotak Kado & Efek Ledakan Emoji -->
+        <section class="section" id="gift-section">
+            <div class="card-glass">
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
+                <div id="explosion-container"></div>
+                <div class="gift-box" onclick="openGift()">🎁</div>
+            </div>
+        </section>
 
-        </div>
+        <!-- SLIDE 2: Ucapan Selamat Sidang -->
+        <section class="section" id="content-section" style="display: none;">
+            <div class="card-glass">
+                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">Your Special Day 🤍</p>
+                <h1 style="font-size: 1.8rem; margin: 10px 0; color: #ffb6c1;">HAPPY SIDANG SKRIPSI</h1>
+                <p style="font-size: 0.9rem; font-style: italic; opacity: 0.9;">"Wishing you happiness, good health, and all your dreams come true." ✨</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Kalimat Suportif -->
+        <section class="section" style="display: none;" id="support-section">
+            <div class="card-glass">
+                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">From My Heart 💌</p>
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Letter For You</h2>
+                <p style="font-size: 0.85rem; line-height: 1.6; text-align: left; opacity: 0.9;">
+                    Terima kasih ya sudah bertahan sampai sejauh ini. Aku tahu proses menuju sidang ini tidak mudah, penuh air mata, lelah, dan rasa ingin menyerah. Tapi kamu membuktikan bahwa kamu wanita hebat yang bisa melaluinya. I'm so proud of you! 🤍
+                </p>
+            </div>
+        </section>
+
     </div>
 
     <script>
         function openGift() {
-            const giftSection = document.getElementById('gift-section');
-            const contentSection = document.getElementById('content-section');
-            const nextSection = document.getElementById('next-section');
+            const container = document.getElementById('explosion-container');
+            const emojis = ['🌸', '🌷', '🌻', '✨', '🤍', '💖', '💐'];
+            const totalEmojis = 30; 
 
-            giftSection.style.transform = 'scale(0)';
-            giftSection.style.transition = 'transform 0.5s ease';
+            // Efek ledakan emoji bunga
+            for (let i = 0; i < totalEmojis; i++) {
+                const span = document.createElement('span');
+                span.classList.add('exploding-emoji');
+                span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const xRandom = (Math.random() - 0.5) * 320; 
+                const yRandom = -Math.random() * 260 - 40;   
+                const rotRandom = Math.random() * 360;       
+
+                span.style.setProperty('--x', `${xRandom}px`);
+                span.style.setProperty('--y', `${yRandom}px`);
+                span.style.setProperty('--rot', `${rotRandom}deg`);
+
+                container.appendChild(span);
+            }
+
+            // Transisi membuka slide berikutnya
+            setTimeout(() => {
+                document.getElementById('gift-section').style.opacity = '0';
+                document.getElementById('gift-section').style.transform = 'scale(0.8)';
+                document.getElementById('gift-section').style.transition = 'all 0.5s ease';
+            }, 500);
 
             setTimeout(() => {
-                giftSection.style.display = 'none';
-                contentSection.style.display = 'flex';
-                nextSection.style.display = 'flex';
-            }, 400);
+                document.getElementById('gift-section').style.display = 'none';
+                document.getElementById('content-section').style.display = 'flex';
+                document.getElementById('support-section').style.display = 'flex';
+            }, 900);
         }
     </script>
 </body>
