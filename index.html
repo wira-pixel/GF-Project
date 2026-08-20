@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Surprise for You</title>
+    <title>Surprise for You</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,17 +12,18 @@
         <!-- Kotak Login -->
         <div id="login-box" class="card">
             <h1>Halo Sayang! 🌷</h1>
-            <p>Kodekode</p>
+            <p>Masukkan kode rahasia yang cuma kamu yang tahu:</p>
             <input type="password" id="pin" placeholder="••••••">
             <button type="button" id="btn-login">Buka Kejutan</button>
             <p id="message" class="error-msg"></p>
         </div>
 
-       <!-- Halaman Loading (Awalnya tersembunyi) -->
-<div id="loading-box" style="display: none;">
-    <div class="spinner-flower">🌸</div>
-    <p class="loading-text">Sabar ya sayang<span class="dots"></span></p>
-</div>
+        <!-- Halaman Loading -->
+        <div id="loading-box" style="display: none;">
+            <div class="spinner-flower">🌸</div>
+            <p class="loading-text">Sabar ya sayang<span class="dots"></span></p>
+        </div>
+    </div>
 
     <script>
         document.getElementById('btn-login').addEventListener('click', function() {
@@ -30,11 +31,13 @@
             
             // Ganti '123456' dengan PIN Anda
             if (pinValue === '123456') {
-                // Sembunyikan kotak login, tampilkan loading
-                document.getElementById('login-box').style.display = 'none';
-                document.getElementById('loading-box').style.display = 'block';
+                // Tandai bahwa user sudah login dengan benar di sesi ini
+                sessionStorage.setItem('isLoggedIn', 'true');
 
-                // Tunggu 2.5 detik (2500ms) baru pindah ke main.html
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('loading-box').style.display = 'flex';
+
+                // Jeda 2.5 detik untuk animasi loading yang estetik
                 setTimeout(function() {
                     window.location.href = 'main.html';
                 }, 2500);
