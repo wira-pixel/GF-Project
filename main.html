@@ -135,15 +135,15 @@
         <img class="modal-content" id="img01">
     </div>
 
-    <!-- POPUP FOTO BUKET ASLI (Hanya Foto & Tombol Tutup) -->
+    <!-- POPUP FOTO BUKET ASLI (Murni Foto & Tombol Tanpa Frame Kartu) -->
     <div id="bouquetPopup" class="bouquet-popup-overlay" style="display: none;" onclick="closeBouquetPopup()">
-        <div class="bouquet-popup-card" onclick="event.stopPropagation()">
+        <div style="display: flex; flex-direction: column; align-items: center; max-width: 320px; width: 90%;" onclick="event.stopPropagation()">
             
-            <div style="border-radius: 15px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 20px;">
-                <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; max-height: 360px; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
+            <div style="border-radius: 20px; overflow: hidden; border: 4px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.6); margin-bottom: 20px; width: 100%;">
+                <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; max-height: 380px; object-fit: cover; display: block;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
             </div>
             
-            <button onclick="closeBouquetPopup()" style="background: #ec407a; border: none; padding: 12px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Tutup Buket 💌</button>
+            <button onclick="closeBouquetPopup()" style="background: #ec407a; border: none; padding: 12px 20px; color: white; border-radius: 15px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.5);">Tutup Buket 💌</button>
         </div>
     </div>
 
