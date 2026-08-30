@@ -93,31 +93,26 @@ button:hover { background: #d81b60; }
 
 /* --- 4. ANIMASI & EFEK --- */
 
-/* Kelas untuk Mengunci Scroll di HP & Laptop saat Pop-up Aktif */
 .no-scroll {
     overflow: hidden !important;
     height: 100vh !important;
 }
 
-/* Fade-in saat Scroll */
 .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 1.5s ease, transform 1.5s ease; }
 .fade-section.show { opacity: 1; transform: translateY(0); }
 
-/* Scroll Hint */
 .scroll-hint {
     font-size: 0.75rem; opacity: 0.5; margin-top: 20px; letter-spacing: 1px;
     display: block; width: 100%; text-align: center; animation: bounceHint 2s infinite; z-index: 2;
 }
 @keyframes bounceHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 
-/* Gift Animation */
 .gift-box {
     font-size: 75px; cursor: pointer; margin-top: 15px; display: inline-block;
     animation: floatGift 2s ease-in-out infinite;
 }
 @keyframes floatGift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.05); } }
 
-/* Explosion Effect */
 #explosion-container {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     pointer-events: none; z-index: 999;
@@ -130,7 +125,6 @@ button:hover { background: #d81b60; }
     100% { transform: translate(var(--x), var(--y)) scale(1.4) rotate(var(--rot)); opacity: 0; }
 }
 
-/* Loading Screen */
 #loading-box {
     position: fixed; 
     top: 0; 
@@ -159,7 +153,17 @@ button:hover { background: #d81b60; }
     letter-spacing: 1px; 
 }
 
-/* Falling Petals Background */
+/* Animasi kedip teks status loading & pop-up foto */
+@keyframes pulseText {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+@keyframes popUpCard {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 .falling-petals {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     pointer-events: none; z-index: 1; overflow: hidden;
@@ -171,7 +175,6 @@ button:hover { background: #d81b60; }
 .falling-petals span:nth-child(4) { left: 70%; animation-duration: 8s; animation-delay: 3s; }
 @keyframes fall { 0% { transform: translateY(-5vh) rotate(0deg); } 100% { transform: translateY(105vh) rotate(360deg); } }
 
-/* --- RESPONSIVE MOBILE FIX --- */
 @media screen and (max-width: 600px) {
     html, body {
         overflow-x: hidden;
@@ -197,7 +200,6 @@ button:hover { background: #d81b60; }
     }
 }
 
-/* Efek Gradasi Muncul (Fade-in & Slide-up) */
 .fade-in-element {
     opacity: 0;
     transform: translateY(40px);
@@ -209,7 +211,6 @@ button:hover { background: #d81b60; }
     transform: translateY(0);
 }
 
-/* Container Galeri Polaroid */
 .gallery-container {
     display: flex;
     flex-direction: column;
@@ -243,7 +244,6 @@ button:hover { background: #d81b60; }
     font-size: 0.9rem;
 }
 
-/* Modal Popup */
 .modal {
     display: none; 
     position: fixed; 
@@ -264,7 +264,6 @@ button:hover { background: #d81b60; }
     cursor: zoom-out;
 }
 
-/* Popup Surat (Isi Surat Utama) */
 .letter-popup {
     display: none;
     position: fixed;
@@ -289,7 +288,6 @@ button:hover { background: #d81b60; }
     text-align: center;
 }
 
-/* Popup Undangan Surat (Yang muncul otomatis saat di-scroll) */
 .envelope-popup-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -328,7 +326,6 @@ button:hover { background: #d81b60; }
     transform: scale(1);
 }
 
-/* --- ANIMASI GAMBAR BUKET BUNGA --- */
 .bouquet-img-container {
     width: 110px;
     height: 110px;
@@ -352,7 +349,6 @@ button:hover { background: #d81b60; }
     50% { transform: translateY(-8px) scale(1.05); }
 }
 
-/* Animasi Memantul untuk Ikon Amplop */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
