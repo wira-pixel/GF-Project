@@ -83,6 +83,7 @@
             </div>
         </section>
 
+        <!-- SLIDE 5: KARTU BUKET BUNGA DENGAN LOADING LUCU & FOTO ASLI -->
         <section class="section fade-section" id="interactive-section" style="display: none;">
             <div class="card-glass" style="max-width: 340px;">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Delivery 💐</p>
@@ -91,6 +92,7 @@
                     Selamat atas kelulusan sidangnya, sayang! Buket bunga ini spesial buat kamu. 🌷✨
                 </p>
                 
+                <!-- 1. Tampilan Awal Sebelum Tombol Dipencet -->
                 <div id="bouquet-initial-view">
                     <div class="bouquet-img-container">
                         <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
@@ -100,11 +102,13 @@
                     </div>
                 </div>
 
+                <!-- 2. Animasi Loading Lucu (Disembunyikan Default) -->
                 <div id="bouquet-loading" style="display: none; padding: 30px 0;">
                     <div class="spinner-flower" style="font-size: 40px; animation: spin 1.5s linear infinite;">🌷</div>
                     <p id="loading-status-text" style="font-size: 0.85rem; color: #ffb6c1; margin-top: 15px; letter-spacing: 1px; animation: pulseText 1s infinite alternate;">Sedang merangkai bunga cinta...</p>
                 </div>
 
+                <!-- 3. Foto Buket Asli (Muncul Setelah Loading Selesai) -->
                 <div id="bouquet-real-view" style="display: none; animation: popUpCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
                     <div style="border-radius: 15px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 10px;" onclick="openModal('buket-asli.jpeg')">
                         <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; height: 220px; object-fit: cover; cursor: pointer;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
@@ -139,7 +143,6 @@
 
     <script>
         function openGift() {
-            // 1. Putar Musik saat Kado Ditekan
             const music = document.getElementById('bg-music');
             if (music) {
                 music.play().catch(error => {
@@ -147,7 +150,6 @@
                 });
             }
 
-            // 2. Efek Ledakan Emoji
             const container = document.getElementById('explosion-container');
             const emojis = ['🌸', '🌷', '🌻', '✨', '🤍', '💖', '💐'];
             const totalEmojis = 35; 
@@ -171,7 +173,6 @@
                 container.appendChild(span);
             }
 
-            // Transisi buka slide berikutnya
             setTimeout(() => {
                 const giftSec = document.getElementById('gift-section');
                 giftSec.style.opacity = '0';
@@ -182,7 +183,6 @@
             setTimeout(() => {
                 document.getElementById('gift-section').style.display = 'none';
                 
-                // Munculkan semua section secara berurutan dengan display flex
                 const sections = ['content-section', 'support-section', 'gallery-section', 'interactive-section'];
                 sections.forEach((secId, index) => {
                     const el = document.getElementById(secId);
@@ -194,16 +194,13 @@
             }, 900);
         }
 
-        // --- FUNGSI MUNCULKAN FOTO BUKET ASLI DENGAN LOADING LUCU ---
+        // --- FUNGSI LOADING & MUNCULKAN FOTO BUKET ASLI ---
         function revealRealBouquet() {
-            // 1. Sembunyikan tampilan awal
             document.getElementById('bouquet-initial-view').style.display = 'none';
             
-            // 2. Munculkan animasi loading
             const loadingDiv = document.getElementById('bouquet-loading');
             loadingDiv.style.display = 'block';
 
-            // Daftar teks loading lucu yang berganti-ganti
             const loadingTexts = [
                 "Sedang merangkai bunga cinta...", 
                 "Mencari pita warna kesukaanmu...", 
@@ -218,20 +215,15 @@
                 if(statusEl) statusEl.innerText = loadingTexts[textIndex];
             }, 800);
 
-            // 3. Setelah 3.2 detik, matikan loading dan tampilkan foto buket asli + ledakan emoji
             setTimeout(() => {
                 clearInterval(textInterval); 
                 loadingDiv.style.display = 'none'; 
                 
-                // Munculkan foto buket asli
                 document.getElementById('bouquet-real-view').style.display = 'block';
-
-                // Panggil ledakan emoji buket
                 triggerBouquetExplosion();
             }, 3200); 
         }
 
-        // Fungsi pendukung ledakan emoji saat foto asli terbuka
         function triggerBouquetExplosion() {
             const container = document.getElementById('explosion-container');
             const emojis = ['💐', '🌷', '🌸', '💖', '✨', '🤍', '📸'];
@@ -257,7 +249,6 @@
             }
         }
 
-        // Observer untuk animasi gradasi (fade-in) saat scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -270,7 +261,6 @@
             observer.observe(el);
         });
 
-        // Fungsi Modal Popup Foto
         function openModal(imgSrc) {
             const modal = document.getElementById("myModal");
             const modalImg = document.getElementById("img01");
@@ -283,9 +273,7 @@
             modal.style.display = "none";
         }
 
-        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL HP & LAPTOP) ---
         let hasShownEnvelopePopup = false;
-
         const envelopePopupObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !hasShownEnvelopePopup) {
@@ -293,7 +281,6 @@
                     popup.style.display = 'flex';
                     setTimeout(() => popup.classList.add('show'), 50);
                     
-                    // Kunci scroll di body dan html (Laptop & HP)
                     document.body.style.overflow = 'hidden';
                     document.documentElement.style.overflow = 'hidden';
                     
@@ -302,7 +289,6 @@
             });
         }, { threshold: 0.5 });
 
-        // Pantau bagian support-section
         const supportSecTarget = document.getElementById('support-section');
         if (supportSecTarget) {
             envelopePopupObserver.observe(supportSecTarget);
@@ -313,18 +299,16 @@
             popup.classList.remove('show');
             setTimeout(() => {
                 popup.style.display = 'none';
-                // Kembalikan fungsi scroll web setelah popup ditutup
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.overflow = 'auto';
             }, 300);
         }
 
         function openLetterFromPopup() {
-            closeEnvelopePopup(); // Tutup popup undangan & kembalikan scroll
-            document.getElementById('letterPopup').style.display = 'flex'; // Buka isi surat utama
+            closeEnvelopePopup(); 
+            document.getElementById('letterPopup').style.display = 'flex'; 
         }
 
-        // Fungsi Buka & Tutup Popup Surat Utama
         function openLetter() {
             document.getElementById('letterPopup').style.display = 'flex';
         }
