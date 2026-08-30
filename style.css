@@ -326,6 +326,45 @@ button:hover { background: #d81b60; }
     transform: scale(1);
 }
 
+/* --- POPUP FOTO BUKET ASLI --- */
+.bouquet-popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.bouquet-popup-overlay.show {
+    opacity: 1;
+}
+
+.bouquet-popup-card {
+    background: rgba(40, 10, 20, 0.95);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    color: #ffffff;
+    padding: 25px;
+    border-radius: 25px;
+    max-width: 320px;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bouquet-popup-overlay.show .bouquet-popup-card {
+    transform: scale(1);
+}
+
 .bouquet-img-container {
     width: 110px;
     height: 110px;
