@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Surprise for You, Sayang</title>
+    <!-- SKRIP PROTEKSI SESI -->
     <script>
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
             window.location.replace('index.html');
@@ -13,14 +14,18 @@
 </head>
 <body class="main-body">
 
+    <!-- Audio Player (Latar Belakang Lagu) -->
     <audio id="bg-music" src="musik.mp4" preload="auto" loop></audio>
 
+    <!-- Efek Kelopak Bunga Berjatuhan di Background -->
     <div class="falling-petals">
         <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span><span>💖</span><span>🌸</span>
     </div>
 
+    <!-- Kontainer Ledakan Emoji -->
     <div id="explosion-container"></div>
 
+    <!-- POPUP SURAT UTAMA (Isi Surat) -->
     <div id="letterPopup" class="letter-popup" onclick="closeLetter()">
         <div class="letter-content" onclick="event.stopPropagation()">
             <h2 style="color: #ffb6c1; margin-bottom: 12px; font-size: 1.4rem;">Untuk Kamu, Cintaku 🤍</h2>
@@ -31,8 +36,10 @@
         </div>
     </div>
 
+    <!-- Kontainer Scroll Mengalir Bebas -->
     <div class="scroll-container">
         
+        <!-- SLIDE 1: Kotak Kado (Tampil Pertama) -->
         <section class="section" id="gift-section">
             <div class="card-glass">
                 <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
@@ -40,6 +47,7 @@
             </div>
         </section>
 
+        <!-- SLIDE 2: Ucapan Selamat Sidang (Awalnya Disembunyikan) -->
         <section class="section fade-section" id="content-section" style="display: none;">
             <div class="card-glass">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">Your Special Day 🤍</p>
@@ -49,6 +57,7 @@
             <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
+        <!-- SLIDE 3: Section Surat dengan Ikon Amplop Permanen di Bawahnya -->
         <section class="section fade-section" id="support-section" style="display: none;">
             <div class="text-only-container">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
@@ -57,6 +66,7 @@
                     Ada pesan khusus untukmu di bawah ini...<br>Tekan ikon suratnya ya! 👇✨
                 </p>
                 
+                <!-- Ikon Amplop Permanen (Bisa diklik berulang kali kapan pun) -->
                 <div onclick="openLetter()" style="cursor: pointer; font-size: 55px; display: inline-block; animation: bounce 2s infinite; margin-top: 15px;">
                     💌
                 </div>
@@ -64,6 +74,7 @@
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
 
+        <!-- SLIDE 4: Galeri Foto Polaroid -->
         <section class="section fade-in-element" id="gallery-section" style="display: none;">
             <h2 style="color: #ffb6c1; margin-bottom: 30px;">Our Memories</h2>
             
@@ -83,7 +94,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: KARTU BUKET BUNGA DENGAN LOADING LUCU & FOTO ASLI -->
+        <!-- SLIDE 5: KARTU BUKET DENGAN TOMBOL BUKA POPUP & LOADING -->
         <section class="section fade-section" id="interactive-section" style="display: none;">
             <div class="card-glass" style="max-width: 340px;">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Delivery 💐</p>
@@ -92,28 +103,26 @@
                     Selamat atas kelulusan sidangnya, sayang! Buket bunga ini spesial buat kamu. 🌷✨
                 </p>
                 
-                <!-- 1. Tampilan Awal Sebelum Tombol Dipencet -->
+                <!-- 1. TAMPILAN AWAL SEBELUM DIPENCET -->
                 <div id="bouquet-initial-view">
                     <div class="bouquet-img-container">
                         <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
                     </div>
                     <div style="margin-top: 15px;">
-                        <button onclick="revealRealBouquet()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
+                        <button onclick="startBouquetLoading()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
                     </div>
                 </div>
 
-                <!-- 2. Animasi Loading Lucu (Disembunyikan Default) -->
+                <!-- 2. ANIMASI LOADING -->
                 <div id="bouquet-loading" style="display: none; padding: 30px 0;">
                     <div class="spinner-flower" style="font-size: 40px; animation: spin 1.5s linear infinite;">🌷</div>
                     <p id="loading-status-text" style="font-size: 0.85rem; color: #ffb6c1; margin-top: 15px; letter-spacing: 1px; animation: pulseText 1s infinite alternate;">Sedang merangkai bunga cinta...</p>
                 </div>
 
-                <!-- 3. Foto Buket Asli (Muncul Setelah Loading Selesai) -->
-                <div id="bouquet-real-view" style="display: none; animation: popUpCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-                    <div style="border-radius: 15px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 10px;" onclick="openModal('buket-asli.jpeg')">
-                        <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; height: 220px; object-fit: cover; cursor: pointer;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
-                    </div>
-                    <p style="font-size: 0.9rem; color: #ffb6c1; font-weight: 600; margin-top: 10px;">Yey! Buket cantiknya sudah sampai! 💐🤍</p>
+                <!-- 3. TOMBOL JIKA SUDAH PERNAH DIBUKA (Bisa dibuka ulang sebagai pop-up) -->
+                <div id="bouquet-reopen-view" style="display: none;">
+                    <div style="font-size: 45px; margin: 10px 0;">💐✨</div>
+                    <button onclick="openRealBouquetPopup()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%;">Buka Buket Lagi 💐</button>
                 </div>
 
             </div>
@@ -121,10 +130,28 @@
 
     </div>
 
+    <!-- Modal Popup untuk Zoom Foto Polaroid Galeri -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <img class="modal-content" id="img01">
     </div>
 
+    <!-- POPUP FOTO BUKET ASLI (Awalnya tersembunyi) -->
+    <div id="bouquetPopup" class="bouquet-popup-overlay" style="display: none;" onclick="closeBouquetPopup()">
+        <div class="bouquet-popup-card" onclick="event.stopPropagation()">
+            <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Gift 🤍</p>
+            <h2 style="font-size: 1.2rem; margin-bottom: 15px; color: #ffb6c1;">Buket Cantik Untukmu</h2>
+            
+            <div style="border-radius: 15px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 15px;">
+                <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; max-height: 300px; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
+            </div>
+            
+            <p style="font-size: 0.9rem; color: #ffb6c1; font-weight: 600; margin-bottom: 15px;">Yey! Buket bunganya berhasil dibuka! 💐✨</p>
+            
+            <button onclick="closeBouquetPopup()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%;">Tutup Buket 💌</button>
+        </div>
+    </div>
+
+    <!-- POPUP KEJUTAN SURAT UTAMA SAAT SCROLL -->
     <div id="envelope-invitation" class="envelope-popup-overlay" style="display: none;" onclick="closeEnvelopePopup()">
         <div class="envelope-popup-card" onclick="event.stopPropagation()">
             <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">From My Heart 💌</p>
@@ -194,8 +221,8 @@
             }, 900);
         }
 
-        // --- FUNGSI LOADING & MUNCULKAN FOTO BUKET ASLI ---
-        function revealRealBouquet() {
+        // --- 1. MEMULAI LOADING LUCU SEBELUM POPUP BUKET MUNCUL ---
+        function startBouquetLoading() {
             document.getElementById('bouquet-initial-view').style.display = 'none';
             
             const loadingDiv = document.getElementById('bouquet-loading');
@@ -219,9 +246,34 @@
                 clearInterval(textInterval); 
                 loadingDiv.style.display = 'none'; 
                 
-                document.getElementById('bouquet-real-view').style.display = 'block';
+                // Tampilkan tombol "Buka Buket Lagi" di kartu utama
+                document.getElementById('bouquet-reopen-view').style.display = 'block';
+
+                // Tampilkan popup foto buket aslinya
+                openRealBouquetPopup();
                 triggerBouquetExplosion();
             }, 3200); 
+        }
+
+        // --- 2. MEMBUKA POPUP FOTO BUKET ASLI ---
+        function openRealBouquetPopup() {
+            const popup = document.getElementById('bouquetPopup');
+            popup.style.display = 'flex';
+            setTimeout(() => popup.classList.add('show'), 50);
+            
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+        }
+
+        // --- 3. MENUTUP POPUP FOTO BUKET ASLI ---
+        function closeBouquetPopup() {
+            const popup = document.getElementById('bouquetPopup');
+            popup.classList.remove('show');
+            setTimeout(() => {
+                popup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
+            }, 300);
         }
 
         function triggerBouquetExplosion() {
