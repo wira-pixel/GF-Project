@@ -86,20 +86,32 @@
         <section class="section fade-section" id="interactive-section" style="display: none;">
             <div class="card-glass" style="max-width: 340px;">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Delivery 💐</p>
-                <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Virtual Bouquet For You</h2>
-                <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 10px; line-height: 1.6;">
-                    Selamat atas kelulusan sidangnya, sayang! Buket bunga spesial ini khusus buat kamu yang hebat. 🌷✨
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Real Bouquet For You</h2>
+                <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 15px; line-height: 1.6;">
+                    Selamat atas kelulusan sidangnya, sayang! Buket bunga ini spesial buat kamu. 🌷✨
                 </p>
                 
-                <div class="bouquet-img-container">
-                    <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
+                <div id="bouquet-initial-view">
+                    <div class="bouquet-img-container">
+                        <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <button onclick="revealRealBouquet()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
+                    </div>
                 </div>
 
-                <div style="margin-top: 15px;">
-                    <button onclick="acceptBouquet()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
+                <div id="bouquet-loading" style="display: none; padding: 30px 0;">
+                    <div class="spinner-flower" style="font-size: 40px; animation: spin 1.5s linear infinite;">🌷</div>
+                    <p id="loading-status-text" style="font-size: 0.85rem; color: #ffb6c1; margin-top: 15px; letter-spacing: 1px; animation: pulseText 1s infinite alternate;">Sedang merangkai bunga cinta...</p>
                 </div>
 
-                <p id="bouquet-result" style="margin-top: 12px; font-size: 0.9rem; color: #ffb6c1; font-weight: 600; min-height: 24px;"></p>
+                <div id="bouquet-real-view" style="display: none; animation: popUpCard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+                    <div style="border-radius: 15px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 10px;" onclick="openModal('buket-asli.jpeg')">
+                        <img src="buket-asli.jpeg" alt="Buket Asli" style="width: 100%; height: 220px; object-fit: cover; cursor: pointer;" onerror="this.src='https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&auto=format&fit=crop&q=60'">
+                    </div>
+                    <p style="font-size: 0.9rem; color: #ffb6c1; font-weight: 600; margin-top: 10px;">Yey! Buket cantiknya sudah sampai! 💐🤍</p>
+                </div>
+
             </div>
         </section>
 
@@ -182,10 +194,47 @@
             }, 900);
         }
 
-        // Fungsi saat tombol buket bunga di slide terakhir ditekan (Dengan efek ledakan emoji)
-        function acceptBouquet() {
+        // --- FUNGSI MUNCULKAN FOTO BUKET ASLI DENGAN LOADING LUCU ---
+        function revealRealBouquet() {
+            // 1. Sembunyikan tampilan awal
+            document.getElementById('bouquet-initial-view').style.display = 'none';
+            
+            // 2. Munculkan animasi loading
+            const loadingDiv = document.getElementById('bouquet-loading');
+            loadingDiv.style.display = 'block';
+
+            // Daftar teks loading lucu yang berganti-ganti
+            const loadingTexts = [
+                "Sedang merangkai bunga cinta...", 
+                "Mencari pita warna kesukaanmu...", 
+                "Menambahkan sedikit taburan kebahagiaan...", 
+                "Dikit lagi sampai nih..."
+            ];
+            
+            let textIndex = 0;
+            const textInterval = setInterval(() => {
+                textIndex = (textIndex + 1) % loadingTexts.length;
+                const statusEl = document.getElementById('loading-status-text');
+                if(statusEl) statusEl.innerText = loadingTexts[textIndex];
+            }, 800);
+
+            // 3. Setelah 3.2 detik, matikan loading dan tampilkan foto buket asli + ledakan emoji
+            setTimeout(() => {
+                clearInterval(textInterval); 
+                loadingDiv.style.display = 'none'; 
+                
+                // Munculkan foto buket asli
+                document.getElementById('bouquet-real-view').style.display = 'block';
+
+                // Panggil ledakan emoji buket
+                triggerBouquetExplosion();
+            }, 3200); 
+        }
+
+        // Fungsi pendukung ledakan emoji saat foto asli terbuka
+        function triggerBouquetExplosion() {
             const container = document.getElementById('explosion-container');
-            const emojis = ['💐', '🌷', '🌸', '💖', '✨', '🤍'];
+            const emojis = ['💐', '🌷', '🌸', '💖', '✨', '🤍', '📸'];
             const totalEmojis = 30; 
 
             for (let i = 0; i < totalEmojis; i++) {
@@ -206,8 +255,6 @@
 
                 container.appendChild(span);
             }
-
-            document.getElementById('bouquet-result').innerText = `Yey! Buket bunga virtual berhasil diterima dengan penuh cinta! 💐🤍`;
         }
 
         // Observer untuk animasi gradasi (fade-in) saat scroll
