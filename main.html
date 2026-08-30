@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <title>Surprise for You, Sayang</title>
+    <!-- SKRIP PROTEKSI SESI -->
     <script>
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
             window.location.replace('index.html');
@@ -13,14 +14,18 @@
 </head>
 <body class="main-body">
 
+    <!-- Audio Player (Latar Belakang Lagu) -->
     <audio id="bg-music" src="musik.mp4" preload="auto" loop></audio>
 
+    <!-- Efek Kelopak Bunga Berjatuhan di Background -->
     <div class="falling-petals">
         <span>🌸</span><span>🌷</span><span>🌸</span><span>✨</span><span>🌸</span><span>🌷</span><span>💖</span><span>🌸</span>
     </div>
 
+    <!-- Kontainer Ledakan Emoji -->
     <div id="explosion-container"></div>
 
+    <!-- POPUP SURAT UTAMA (Isi Surat) -->
     <div id="letterPopup" class="letter-popup" onclick="closeLetter()">
         <div class="letter-content" onclick="event.stopPropagation()">
             <h2 style="color: #ffb6c1; margin-bottom: 12px; font-size: 1.4rem;">Untuk Kamu, Cintaku 🤍</h2>
@@ -31,8 +36,10 @@
         </div>
     </div>
 
+    <!-- Kontainer Scroll Mengalir Bebas -->
     <div class="scroll-container">
         
+        <!-- SLIDE 1: Kotak Kado (Tampil Pertama) -->
         <section class="section" id="gift-section">
             <div class="card-glass">
                 <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">Tap the gift box to open it 🎁</p>
@@ -40,6 +47,7 @@
             </div>
         </section>
 
+        <!-- SLIDE 2: Ucapan Selamat Sidang (Awalnya Disembunyikan) -->
         <section class="section fade-section" id="content-section" style="display: none;">
             <div class="card-glass">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase;">Your Special Day 🤍</p>
@@ -49,6 +57,7 @@
             <p class="scroll-hint">Scroll kebawah untuk membaca pesan... ↓</p>
         </section>
 
+        <!-- SLIDE 3: Section Surat dengan Ikon Amplop Permanen di Bawahnya -->
         <section class="section fade-section" id="support-section" style="display: none;">
             <div class="text-only-container">
                 <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 10px;">From My Heart 💌</p>
@@ -57,6 +66,7 @@
                     Ada pesan khusus untukmu di bawah ini...<br>Tekan ikon suratnya ya! 👇✨
                 </p>
                 
+                <!-- Ikon Amplop Permanen (Bisa diklik berulang kali kapan pun) -->
                 <div onclick="openLetter()" style="cursor: pointer; font-size: 55px; display: inline-block; animation: bounce 2s infinite; margin-top: 15px;">
                     💌
                 </div>
@@ -64,6 +74,7 @@
             <p class="scroll-hint">Scroll lagi ya... ↓</p>
         </section>
 
+        <!-- SLIDE 4: Galeri Foto Polaroid -->
         <section class="section fade-in-element" id="gallery-section" style="display: none;">
             <h2 style="color: #ffb6c1; margin-bottom: 30px;">Our Memories</h2>
             
@@ -83,44 +94,49 @@
             </div>
         </section>
 
+        <!-- SLIDE 5: KARTU BUKET BUNGA SPESIAL (Pengganti Alasan Kamu Hebat) -->
         <section class="section fade-section" id="interactive-section" style="display: none;">
             <div class="card-glass" style="max-width: 340px;">
-                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 8px;">Why I'm Proud 🌷</p>
-                <h2 style="font-size: 1.3rem; margin-bottom: 12px; color: #ffb6c1;">Alasan Kamu Hebat</h2>
-                <ul style="text-align: left; font-size: 0.88rem; opacity: 0.9; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
-                    <li>Tidak pernah menyerah meski revisi menumpuk.</li>
-                    <li>Selalu kuat meskipun sering merasa lelah.</li>
-                    <li>Senyumanmu tetap jadi favoritku sampai kapan pun.</li>
-                </ul>
+                <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Delivery 💐</p>
+                <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Virtual Bouquet For You</h2>
+                <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 10px; line-height: 1.6;">
+                    Selamat atas kelulusan sidangnya, sayang! Buket bunga spesial ini khusus buat kamu yang hebat. 🌷✨
+                </p>
                 
-                <p style="font-size: 0.9rem; margin-bottom: 10px; font-weight: 600;">Mau merayakan kelulusan ini pakai apa, Sayang? 🎉</p>
-                <button onclick="celebrateChoice('Traktir makanan enak! 🍕')" style="margin-bottom: 8px; background: #ec407a; border: none; padding: 10px; border-radius: 12px; color: white; width: 100%; cursor: pointer; font-weight: 600;">Traktir Makanan Enak 🍕</button>
-                <button onclick="celebrateChoice('Jalan-jalan seharian! ✈️')" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 10px; border-radius: 12px; color: white; width: 100%; cursor: pointer; font-weight: 600;">Jalan-jalan Seharian ✈️</button>
-                
-                <p id="choice-result" style="margin-top: 12px; font-size: 0.9rem; color: #ffb6c1; font-weight: 600; min-height: 24px;"></p>
+                <!-- GAMBAR BUKET DENGAN ANIMASI HALUS -->
+                <div class="bouquet-img-container">
+                    <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <button onclick="acceptBouquet()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
+                </div>
+
+                <p id="bouquet-result" style="margin-top: 12px; font-size: 0.9rem; color: #ffb6c1; font-weight: 600; min-height: 24px;"></p>
             </div>
         </section>
 
     </div>
 
+    <!-- Modal Popup untuk Zoom Foto -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <img class="modal-content" id="img01">
     </div>
 
-    <div id="envelope-invitation" class="envelope-popup-overlay" style="display: none;">
+    <!-- POPUP KEJUTAN SURAT (Muncul otomatis saat scroll ke section surat) -->
+    <div id="envelope-invitation" class="envelope-popup-overlay" style="display: none;" onclick="closeEnvelopePopup()">
         <div class="envelope-popup-card" onclick="event.stopPropagation()">
-            <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">Special Delivery 💐</p>
-            <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Virtual Bouquet For You</h2>
-            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 10px;">
-                Selamat atas kelulusan sidangnya, sayang! Buket bunga spesial ini khusus buat kamu yang hebat. 🌷✨
+            <p style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7; text-transform: uppercase; margin-bottom: 5px;">From My Heart 💌</p>
+            <h2 style="font-size: 1.3rem; margin-bottom: 10px; color: #ffb6c1;">A Letter For You</h2>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 15px;">
+                Ada pesan khusus untukmu di bawah ini...<br>Tekan ikon suratnya ya! 👇✨
             </p>
-            
-            <div class="bouquet-img-container">
-                <img src="https://img.icons8.com/color/144/flower-bouquet.png" alt="Buket Bunga" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2965/2965567.png'">
+            <!-- Ikon Amplop Interaktif di dalam Popup Kejutan -->
+            <div onclick="openLetterFromPopup()" style="cursor: pointer; font-size: 55px; display: inline-block; animation: bounce 2s infinite; margin: 10px 0;">
+                💌
             </div>
-
             <div style="margin-top: 15px;">
-                <button onclick="acceptBouquet()" style="background: #ec407a; border: none; padding: 10px 20px; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; width: 100%; box-shadow: 0 4px 15px rgba(236,64,122,0.4);">Terima Buketnya 💐</button>
+                <button onclick="closeEnvelopePopup()" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; color: white; border-radius: 10px; cursor: pointer; font-size: 0.8rem;">Tutup</button>
             </div>
         </div>
     </div>
@@ -182,8 +198,9 @@
             }, 900);
         }
 
-        function celebrateChoice(text) {
-            document.getElementById('choice-result').innerText = `Asyik! Siap-siap ditraktir ya, pilihan kamu: ${text} 🥰`;
+        // Fungsi saat tombol buket bunga di slide terakhir ditekan
+        function acceptBouquet() {
+            document.getElementById('bouquet-result').innerText = `Yey! Buket bunga virtual berhasil diterima dengan cinta! 💐🤍`;
         }
 
         // Observer untuk animasi gradasi (fade-in) saat scroll
@@ -212,12 +229,12 @@
             modal.style.display = "none";
         }
 
-        // --- LOGIKA POPUP BUKET BUNGA OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL HP & LAPTOP) ---
-        let hasShownBouquetPopup = false;
+        // --- LOGIKA POPUP UNDANGAN SURAT OTOMATIS SAAT SCROLL (DENGAN KUNCI SCROLL HP & LAPTOP) ---
+        let hasShownEnvelopePopup = false;
 
-        const bouquetPopupObserver = new IntersectionObserver((entries) => {
+        const envelopePopupObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !hasShownBouquetPopup) {
+                if (entry.isIntersecting && !hasShownEnvelopePopup) {
                     const popup = document.getElementById('envelope-invitation');
                     popup.style.display = 'flex';
                     setTimeout(() => popup.classList.add('show'), 50);
@@ -226,7 +243,7 @@
                     document.body.style.overflow = 'hidden';
                     document.documentElement.style.overflow = 'hidden';
                     
-                    hasShownBouquetPopup = true; 
+                    hasShownEnvelopePopup = true; 
                 }
             });
         }, { threshold: 0.5 });
@@ -234,18 +251,23 @@
         // Pantau bagian support-section
         const supportSecTarget = document.getElementById('support-section');
         if (supportSecTarget) {
-            bouquetPopupObserver.observe(supportSecTarget);
+            envelopePopupObserver.observe(supportSecTarget);
         }
 
-        function acceptBouquet() {
+        function closeEnvelopePopup() {
             const popup = document.getElementById('envelope-invitation');
             popup.classList.remove('show');
             setTimeout(() => {
                 popup.style.display = 'none';
-                // Kembalikan fungsi scroll web setelah buket diterima
+                // Kembalikan fungsi scroll web setelah popup ditutup
                 document.body.style.overflow = 'auto';
                 document.documentElement.style.overflow = 'auto';
             }, 300);
+        }
+
+        function openLetterFromPopup() {
+            closeEnvelopePopup(); // Tutup popup undangan & kembalikan scroll
+            document.getElementById('letterPopup').style.display = 'flex'; // Buka isi surat utama
         }
 
         // Fungsi Buka & Tutup Popup Surat Utama
