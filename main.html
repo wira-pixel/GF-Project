@@ -89,7 +89,20 @@
                 </p>
 
                 <div class="gift-box" onclick="openGift()">
-                    🎁
+                    <div class="gift-lid">
+                        <div class="gift-bow">
+                            <span class="bow-left"></span>
+                            <span class="bow-right"></span>
+                            <span class="bow-center"></span>
+                        </div>
+                    </div>
+
+                    <div class="gift-body">
+                        <div class="gift-ribbon vertical"></div>
+                        <div class="gift-ribbon horizontal"></div>
+                    </div>
+
+                    <div class="gift-glow"></div>
                 </div>
 
             </div>
@@ -664,6 +677,16 @@
     <script>
 
         function openGift() {
+
+            const gift = document.querySelector('.gift-box');
+
+            if (gift && gift.classList.contains('opened')) {
+                return;
+            }
+
+            if (gift) {
+                gift.classList.add('opened');
+            }
 
             const music = document.getElementById('bg-music');
 
