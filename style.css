@@ -107,11 +107,200 @@ button:hover { background: #d81b60; }
 }
 @keyframes bounceHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 
+/* =========================================================
+   ANIMASI KOTAK KADO
+   ========================================================= */
+
 .gift-box {
-    font-size: 75px; cursor: pointer; margin-top: 15px; display: inline-block;
-    animation: floatGift 2s ease-in-out infinite;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 25px auto 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    perspective: 800px;
+    animation: floatGift 2.5s ease-in-out infinite;
 }
-@keyframes floatGift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.05); } }
+
+.gift-body {
+    position: relative;
+    width: 125px;
+    height: 100px;
+    background: linear-gradient(145deg, #ec407a, #c2185b);
+    border-radius: 6px 6px 12px 12px;
+    box-shadow:
+        0 12px 25px rgba(236, 64, 122, 0.35),
+        inset 0 2px 5px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.gift-ribbon.vertical {
+    position: absolute;
+    width: 22px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #ffd1dc, #ffb6c1, #ffd1dc);
+    box-shadow: 0 0 8px rgba(255, 182, 193, 0.35);
+}
+
+.gift-ribbon.horizontal {
+    position: absolute;
+    width: 100%;
+    height: 22px;
+    left: 0;
+    top: 38%;
+    background: linear-gradient(180deg, #ffd1dc, #ffb6c1, #ffd1dc);
+    box-shadow: 0 0 8px rgba(255, 182, 193, 0.35);
+}
+
+.gift-lid {
+    position: absolute;
+    width: 145px;
+    height: 34px;
+    left: 50%;
+    top: 43px;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #f06292, #d81b60);
+    border-radius: 7px;
+    box-shadow:
+        0 8px 18px rgba(236, 64, 122, 0.4),
+        inset 0 2px 5px rgba(255,255,255,0.25);
+    z-index: 4;
+    transform-origin: left bottom;
+    transition:
+        transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.5s ease;
+}
+
+.gift-lid::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #ffd1dc, #ffb6c1, #ffd1dc);
+}
+
+.gift-bow {
+    position: absolute;
+    width: 55px;
+    height: 35px;
+    left: 50%;
+    top: -25px;
+    transform: translateX(-50%);
+}
+
+.bow-left {
+    position: absolute;
+    width: 32px;
+    height: 25px;
+    left: 0;
+    top: 5px;
+    background: #ffb6c1;
+    border-radius: 80% 20% 70% 30%;
+    transform: rotate(-25deg);
+    box-shadow: 0 3px 8px rgba(255, 182, 193, 0.35);
+}
+
+.bow-right {
+    position: absolute;
+    width: 32px;
+    height: 25px;
+    right: 0;
+    top: 5px;
+    background: #ffb6c1;
+    border-radius: 20% 80% 30% 70%;
+    transform: rotate(25deg);
+    box-shadow: 0 3px 8px rgba(255, 182, 193, 0.35);
+}
+
+.bow-center {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 50%;
+    top: 13px;
+    transform: translateX(-50%);
+    background: #f8d7df;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
+    z-index: 2;
+}
+
+.gift-glow {
+    position: absolute;
+    width: 130px;
+    height: 35px;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 182, 193, 0.35);
+    filter: blur(18px);
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+@keyframes floatGift {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.gift-box.opened {
+    animation: giftOpenShake 0.8s ease;
+}
+
+.gift-box.opened .gift-lid {
+    transform:
+        translateX(-50%)
+        translateY(-55px)
+        rotate(-10deg);
+}
+
+.gift-box.opened .gift-glow {
+    width: 180px;
+    height: 60px;
+    opacity: 1;
+    filter: blur(25px);
+    box-shadow: 0 0 35px rgba(255, 182, 193, 0.8);
+}
+
+.gift-box.opened .gift-body {
+    animation: giftBodyGlow 0.8s ease;
+}
+
+@keyframes giftOpenShake {
+    0% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-4px) scale(1.03) rotate(-2deg); }
+    50% { transform: translateY(-8px) scale(1.06) rotate(2deg); }
+    75% { transform: translateY(-5px) scale(1.04) rotate(-1deg); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes giftBodyGlow {
+    0% {
+        box-shadow: 0 12px 25px rgba(236, 64, 122, 0.35);
+    }
+    50% {
+        box-shadow:
+            0 0 35px rgba(255, 182, 193, 0.8),
+            0 12px 30px rgba(236, 64, 122, 0.5);
+    }
+    100% {
+        box-shadow: 0 12px 25px rgba(236, 64, 122, 0.35);
+    }
+}
 
 #explosion-container {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -188,7 +377,7 @@ button:hover { background: #d81b60; }
     }
 
     .gift-box {
-        font-size: 60px !important;
+        transform: scale(0.9);
     }
 
     h1 {
